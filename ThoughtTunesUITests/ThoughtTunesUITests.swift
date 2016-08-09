@@ -6,6 +6,7 @@
 //  Copyright © 2016 floydhillcode. All rights reserved.
 //
 
+import UIKit
 import XCTest
 
 class ThoughtTunesUITests: XCTestCase {
@@ -28,9 +29,5 @@ class ThoughtTunesUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
     
 }
