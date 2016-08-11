@@ -26,7 +26,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="114"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uWz-fE-QJT" id="VJy-E6-P3x">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="113.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="114"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iEf-fL-Rc1">
@@ -62,7 +62,13 @@
                             <constraint firstItem="eOz-W7-c6u" firstAttribute="leading" secondItem="ffF-Af-BKB" secondAttribute="leading" id="ynQ-6u-BIR"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Categories" id="bUD-Qv-9uV"/>
+                    <navigationItem key="navigationItem" title="Categories" id="bUD-Qv-9uV">
+                        <barButtonItem key="rightBarButtonItem" title="Update" id="MgG-lV-OkH">
+                            <connections>
+                                <action selector="updateButtonTapped:" destination="1Pn-kg-HlK" id="Q6T-V1-t0b"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="catTableView" destination="eOz-W7-c6u" id="QYq-n7-4xJ"/>

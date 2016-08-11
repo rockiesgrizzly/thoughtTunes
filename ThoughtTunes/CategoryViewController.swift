@@ -11,52 +11,85 @@ import UIKit
 class CategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var catTableView: UITableView!
+    internal var tagChosen: TagType?
+    var dataHandler: DataHandler? = DataHandler()
+    var localNotifier = NSNotificationCenter.defaultCenter()
     
-    lazy var dataList: [String] = {
-        return ["Arcade Fire", "The Beatles", "Coldplay", "dc Talk", "Elton John", "U2"]
-    }()
     
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("categoryViewLoaded")
+        updateDataFromTagType()
     }
     
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        localNotifier.addObserver(self, selector: #selector(reloadTableView), name: Notifications.categoryDataListSet, object: dataHandler)
     }
     
     
     
     //MARK: TableView Handling
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataList.count
+        if let dataList = dataHandler?.categoryDataList {
+            return dataList.count
+        } else {
+            return 0
+        }
     }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(VCCellNames.categoryCell, forIndexPath: indexPath) as! CategoryCell
         
-        cell.categoryName.text = dataList[indexPath.row]
+        if let dataList = dataHandler?.categoryDataList {
+            cell.categoryName.text = dataList[indexPath.row].name
+        }
         
         return cell
     }
+    
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let storyboard = UIStoryboard(name: VCNames.tuneViewController, bundle: nil)
-        let vc = storyboard.instantiateViewControllerWithIdentifier(VCNames.tuneViewController)
-        
-        dispatch_async(dispatch_get_main_queue()) {
-            self.showViewController(vc, sender: self)
+        if let vc = storyboard.instantiateViewControllerWithIdentifier(VCNames.tuneViewController) as? TuneViewController {
+            dispatch_async(dispatch_get_main_queue()) {
+                self.showViewController(vc, sender: self)
+            }
         }
     }
     
+    
+    func updateDataFromTagType() {
+        if let tagChosen = tagChosen {
+            switch tagChosen {
+            case .Artists:
+                dataHandler?.updateData(.Category, ifCategoryThenTagType: .Artists)
+            case .Albums:
+                dataHandler?.updateData(.Category, ifCategoryThenTagType: .Albums)
+            case .Genre:
+                dataHandler?.updateData(.Category, ifCategoryThenTagType: .Genre)
+            }
+        }
+    }
+    
+    
+    @IBAction func updateButtonTapped(sender: AnyObject) {
+        updateDataFromTagType()
+    }
+    
+    
+    func reloadTableView() {
+        self.catTableView.reloadData()
+    }
     
 
 

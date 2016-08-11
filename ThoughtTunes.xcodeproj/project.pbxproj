@@ -7,10 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		430F09D11D58EFC800C37C20 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430F09D01D58EFC800C37C20 /* Strings.swift */; };
+		430F09D11D58EFC800C37C20 /* Enums&Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430F09D01D58EFC800C37C20 /* Enums&Strings.swift */; };
 		430F09D31D58F3A500C37C20 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430F09D21D58F3A500C37C20 /* TagCell.swift */; };
 		430F09D51D58F3D100C37C20 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430F09D41D58F3D100C37C20 /* CategoryCell.swift */; };
 		430F09D71D58F3E000C37C20 /* TuneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430F09D61D58F3E000C37C20 /* TuneCell.swift */; };
+		432415671D5C1BBB00BEED97 /* Tune+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432415611D5C1BBB00BEED97 /* Tune+CoreDataProperties.swift */; };
+		432415681D5C1BBB00BEED97 /* Tune.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432415621D5C1BBB00BEED97 /* Tune.swift */; };
+		432415691D5C1BBB00BEED97 /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432415631D5C1BBB00BEED97 /* Category+CoreDataProperties.swift */; };
+		4324156A1D5C1BBB00BEED97 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432415641D5C1BBB00BEED97 /* Category.swift */; };
+		4324156B1D5C1BBB00BEED97 /* Tag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432415651D5C1BBB00BEED97 /* Tag+CoreDataProperties.swift */; };
+		4324156C1D5C1BBB00BEED97 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432415661D5C1BBB00BEED97 /* Tag.swift */; };
 		43385C8D1D552D92008DE0AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43385C8C1D552D92008DE0AE /* AppDelegate.swift */; };
 		43385C951D552D92008DE0AE /* ThoughtTunes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 43385C931D552D92008DE0AE /* ThoughtTunes.xcdatamodeld */; };
 		43385C971D552D92008DE0AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43385C961D552D92008DE0AE /* Assets.xcassets */; };
@@ -26,6 +32,7 @@
 		43EB08EE1D59520200B1AE5C /* TagViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB08ED1D59520200B1AE5C /* TagViewControllerTests.swift */; };
 		43EB08F01D59523500B1AE5C /* CategoryViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB08EF1D59523500B1AE5C /* CategoryViewControllerTests.swift */; };
 		43EB08F21D59524700B1AE5C /* TuneViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EB08F11D59524700B1AE5C /* TuneViewControllerTests.swift */; };
+		43FF55101D5A25190090862E /* DataHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FF550F1D5A25190090862E /* DataHandlerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,10 +53,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		430F09D01D58EFC800C37C20 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		430F09D01D58EFC800C37C20 /* Enums&Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Enums&Strings.swift"; sourceTree = "<group>"; };
 		430F09D21D58F3A500C37C20 /* TagCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		430F09D41D58F3D100C37C20 /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		430F09D61D58F3E000C37C20 /* TuneCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TuneCell.swift; sourceTree = "<group>"; };
+		432415611D5C1BBB00BEED97 /* Tune+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Tune+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		432415621D5C1BBB00BEED97 /* Tune.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tune.swift; sourceTree = "<group>"; };
+		432415631D5C1BBB00BEED97 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		432415641D5C1BBB00BEED97 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		432415651D5C1BBB00BEED97 /* Tag+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Tag+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		432415661D5C1BBB00BEED97 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		43385C891D552D92008DE0AE /* ThoughtTunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThoughtTunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43385C8C1D552D92008DE0AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43385C941D552D92008DE0AE /* ThoughtTunes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ThoughtTunes.xcdatamodel; sourceTree = "<group>"; };
@@ -71,6 +84,7 @@
 		43EB08ED1D59520200B1AE5C /* TagViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagViewControllerTests.swift; sourceTree = "<group>"; };
 		43EB08EF1D59523500B1AE5C /* CategoryViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryViewControllerTests.swift; sourceTree = "<group>"; };
 		43EB08F11D59524700B1AE5C /* TuneViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TuneViewControllerTests.swift; sourceTree = "<group>"; };
+		43FF550F1D5A25190090862E /* DataHandlerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHandlerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +112,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4322CC3A1D5B987A002DC201 /* CoreDataClasses */ = {
+			isa = PBXGroup;
+			children = (
+				432415611D5C1BBB00BEED97 /* Tune+CoreDataProperties.swift */,
+				432415621D5C1BBB00BEED97 /* Tune.swift */,
+				432415631D5C1BBB00BEED97 /* Category+CoreDataProperties.swift */,
+				432415641D5C1BBB00BEED97 /* Category.swift */,
+				432415651D5C1BBB00BEED97 /* Tag+CoreDataProperties.swift */,
+				432415661D5C1BBB00BEED97 /* Tag.swift */,
+			);
+			name = CoreDataClasses;
+			sourceTree = "<group>";
+		};
 		43385C801D552D92008DE0AE = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				43EB08ED1D59520200B1AE5C /* TagViewControllerTests.swift */,
+				43FF550F1D5A25190090862E /* DataHandlerTests.swift */,
 				43EB08EF1D59523500B1AE5C /* CategoryViewControllerTests.swift */,
 				43EB08F11D59524700B1AE5C /* TuneViewControllerTests.swift */,
 				43385CA61D552D92008DE0AE /* Info.plist */,
@@ -152,9 +180,10 @@
 		4390DC2D1D553FD300110F29 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				43385C931D552D92008DE0AE /* ThoughtTunes.xcdatamodeld */,
 				4390DC491D55620F00110F29 /* DataHandler.swift */,
-				430F09D01D58EFC800C37C20 /* Strings.swift */,
+				430F09D01D58EFC800C37C20 /* Enums&Strings.swift */,
+				43385C931D552D92008DE0AE /* ThoughtTunes.xcdatamodeld */,
+				4322CC3A1D5B987A002DC201 /* CoreDataClasses */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -326,16 +355,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4324156C1D5C1BBB00BEED97 /* Tag.swift in Sources */,
 				4390DC371D55409A00110F29 /* CategoryViewController.swift in Sources */,
+				432415691D5C1BBB00BEED97 /* Category+CoreDataProperties.swift in Sources */,
+				432415681D5C1BBB00BEED97 /* Tune.swift in Sources */,
 				430F09D71D58F3E000C37C20 /* TuneCell.swift in Sources */,
+				432415671D5C1BBB00BEED97 /* Tune+CoreDataProperties.swift in Sources */,
 				4390DC3D1D5540E500110F29 /* TuneViewController.swift in Sources */,
 				4390DC331D55408000110F29 /* TagViewController.swift in Sources */,
 				43385C8D1D552D92008DE0AE /* AppDelegate.swift in Sources */,
 				430F09D31D58F3A500C37C20 /* TagCell.swift in Sources */,
 				430F09D51D58F3D100C37C20 /* CategoryCell.swift in Sources */,
-				430F09D11D58EFC800C37C20 /* Strings.swift in Sources */,
+				430F09D11D58EFC800C37C20 /* Enums&Strings.swift in Sources */,
+				4324156B1D5C1BBB00BEED97 /* Tag+CoreDataProperties.swift in Sources */,
 				4390DC4A1D55620F00110F29 /* DataHandler.swift in Sources */,
 				43385C951D552D92008DE0AE /* ThoughtTunes.xcdatamodeld in Sources */,
+				4324156A1D5C1BBB00BEED97 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,6 +378,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43FF55101D5A25190090862E /* DataHandlerTests.swift in Sources */,
 				43EB08F21D59524700B1AE5C /* TuneViewControllerTests.swift in Sources */,
 				43EB08F01D59523500B1AE5C /* CategoryViewControllerTests.swift in Sources */,
 				43EB08EE1D59520200B1AE5C /* TagViewControllerTests.swift in Sources */,

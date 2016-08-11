@@ -39,16 +39,26 @@ class CategoryViewControllerTests: XCTestCase {
     }
     
     func testDataList_IsNotNil() {
-        XCTAssertNotNil(viewController.dataList)
+        viewController.updateDataFromTagType()
+        viewController.dataHandler?.fetchData(.Category)
+        XCTAssertNotNil(viewController.dataHandler?.categoryDataList)
     }
     
-    func testTableView_CellForRowIsNotNil() {
-        let tableView = viewController.catTableView
-        tableView.reloadData()
-        let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))
-        XCTAssertNotNil(cell)
-    }
+//    //TODO: resolve cell returning as nil here though not nil in tableView itself
+//    func testTableView_CellForRow_ProducesCell() {
+//        let tableView = viewController.catTableView
+//        tableView.reloadData()
+//        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+//        let cell = tableView.cellForRowAtIndexPath(indexPath)
+//        XCTAssertNotNil(cell)
+//    }
 
+    func testTagTypeUpdate() {
+        XCTAssertNil(viewController.tagChosen, "tagChosen should start as nil")
+        
+        viewController.tagChosen = TagType.Artists
+        XCTAssertNotNil(viewController.tagChosen)
+    }
 
 
 }

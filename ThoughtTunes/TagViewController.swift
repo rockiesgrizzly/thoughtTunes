@@ -11,62 +11,94 @@
 import UIKit
 
 class TagViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
     @IBOutlet var tagTableView: UITableView!
     @IBOutlet var updateButton: UIBarButtonItem!
+    var dataHandler: DataHandler? = DataHandler()
+    var localNotifier = NSNotificationCenter.defaultCenter()
     
-    
-    lazy var dataList: [String] = {
-        return ["Artists", "Albums", "Genres"]
-    }()
+    //TODO: create notification for dataLoad
     
     
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        dataHandler?.updateData(.Tag, ifCategoryThenTagType: nil)
     }
     
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        localNotifier.addObserver(self, selector: #selector(reloadTableView), name: Notifications.tagDataListSet, object: dataHandler)
+    }
+    
+    deinit {
+        localNotifier.removeObserver(self)
     }
     
     
     
     //MARK: TableView Handling
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataList.count
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
     }
     
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let dataList = dataHandler?.tagDataList {
+            return dataList.count
+        } else {
+            return 0
+        }
     }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(VCCellNames.tagCell, forIndexPath: indexPath) as! TagCell
         
-        cell.tagName.text = dataList[indexPath.row]
+        if let dataList = dataHandler?.tagDataList {
+            cell.tagName.text = dataList[indexPath.row].title
+        }
         
         return cell
     }
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let storyboard = UIStoryboard(name: VCNames.categoryViewController, bundle: nil)
-        let vc = storyboard.instantiateViewControllerWithIdentifier(VCNames.categoryViewController)
-        
-        dispatch_async(dispatch_get_main_queue()) { 
-            self.showViewController(vc, sender: self)
+        if let dataList = dataHandler?.tagDataList {
+            
+            let storyboard = UIStoryboard(name: VCNames.categoryViewController, bundle: nil)
+            
+            if let vc = storyboard.instantiateViewControllerWithIdentifier(VCNames.categoryViewController) as? CategoryViewController {
+                let tagTitle = dataList[indexPath.row].title
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    if tagTitle == TagType.Artists.rawValue {
+                        vc.tagChosen = TagType.Artists
+                        self.showViewController(vc, sender: self)
+                    } else if tagTitle == TagType.Albums.rawValue {
+                        vc.tagChosen = TagType.Albums
+                        self.showViewController(vc, sender: self)
+                    } else if tagTitle == TagType.Genre.rawValue {
+                        vc.tagChosen = TagType.Genre
+                        self.showViewController(vc, sender: self)
+                    }
+                }
+            }
         }
-        
     }
     
     
-
+    @IBAction func updateButtonTapped(sender: UIBarButtonItem) {
+        dataHandler?.updateData(.Tag, ifCategoryThenTagType: nil)
+    }
     
     
-
+    func reloadTableView() {
+        self.tagTableView.reloadData()
+    }
+    
+    
+    
 }
