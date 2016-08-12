@@ -25,25 +25,25 @@ class DataHandlerTests: XCTestCase {
     }
     
     func testUpdateData_updatesDataListAndRetrievesFromCoreData(){
-        sut.updateData(.Tag, ifCategoryThenTagType: nil)
+        sut.updateData(.Tag, ifCategoryThenTagType: nil, ifTuneThenQueryString:  nil)
         sut.fetchData(.Tag)
         XCTAssertNotNil(sut.tagDataList)
         
-        sut.updateData(.Category, ifCategoryThenTagType: TagType.Artists)
+        sut.updateData(.Category, ifCategoryThenTagType: TagType.Artists, ifTuneThenQueryString: nil)
         sut.fetchData(.Category)
         XCTAssertNotNil(sut.categoryDataList)
         
-        sut.updateData(.Category, ifCategoryThenTagType: TagType.Albums)
+        sut.updateData(.Category, ifCategoryThenTagType: TagType.Albums, ifTuneThenQueryString:  nil)
         sut.fetchData(.Category)
         XCTAssertNotNil(sut.categoryDataList)
         
-        sut.updateData(.Category, ifCategoryThenTagType: TagType.Genre)
+        sut.updateData(.Category, ifCategoryThenTagType: TagType.Genre, ifTuneThenQueryString:  nil)
         sut.fetchData(.Category)
         XCTAssertNotNil(sut.categoryDataList)
         
-//        sut.updateData(.Tune, ifCategoryThenTagType: nil)
-//        sut.fetchData(.Tune)
-//        XCTAssertNotNil(sut.tuneDataList)
+        sut.updateData(.Tune, ifCategoryThenTagType: nil, ifTuneThenQueryString: TestStrings.tuneQueryStringTwoValues)
+        sut.fetchData(.Tune)
+        XCTAssertNotNil(sut.tuneDataList)
     }
     
     func testClearCoreDataEntity_Clears(){
@@ -53,8 +53,8 @@ class DataHandlerTests: XCTestCase {
         sut.clearCoreDataEntity(.Category)
         XCTAssertNotNil(sut.fetchData(.Category))
         
-//        sut.clearCoreDataEntity(.Tune)
-//        XCTAssertNotNil(sut.fetchData(.Tune))
+        sut.clearCoreDataEntity(.Tune)
+        XCTAssertNotNil(sut.fetchData(.Tune))
     }
     
 

@@ -62,13 +62,7 @@
                             <constraint firstItem="eOz-W7-c6u" firstAttribute="leading" secondItem="ffF-Af-BKB" secondAttribute="leading" id="ynQ-6u-BIR"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Categories" id="bUD-Qv-9uV">
-                        <barButtonItem key="rightBarButtonItem" title="Update" id="MgG-lV-OkH">
-                            <connections>
-                                <action selector="updateButtonTapped:" destination="1Pn-kg-HlK" id="Q6T-V1-t0b"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Categories" id="bUD-Qv-9uV"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="catTableView" destination="eOz-W7-c6u" id="QYq-n7-4xJ"/>

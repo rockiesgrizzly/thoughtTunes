@@ -28,7 +28,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="294"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ApQ-Nu-2pO" id="nfV-TI-BWL">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="294"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="293.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IIf-LX-1UW" userLabel="tuneArtImage">
@@ -37,78 +37,53 @@
                                                         <constraint firstAttribute="width" secondItem="IIf-LX-1UW" secondAttribute="height" multiplier="1:1" id="y9L-G3-VoG"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tuneName" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcr-XW-Xu4" userLabel="tuneName">
-                                                    <rect key="frame" x="123" y="8" width="189" height="20"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcr-XW-Xu4" userLabel="tuneName">
+                                                    <rect key="frame" x="123" y="8" width="189" height="0.0"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tuneType" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MlM-Tl-wSM">
-                                                    <rect key="frame" x="123" y="52" width="189" height="20"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MlM-Tl-wSM">
+                                                    <rect key="frame" x="123" y="62" width="189" height="0.0"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U7G-uX-fZy" userLabel="descriptionScrollView">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qFl-6c-pUT">
+                                                    <rect key="frame" x="123" y="115" width="189" height="0.0"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bKd-Qq-OEs">
                                                     <rect key="frame" x="8" y="123" width="304" height="163"/>
-                                                    <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Ki-PC-obI">
-                                                            <rect key="frame" x="0.0" y="0.0" width="304" height="163"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y2S-ri-IZT">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="304" height="163"/>
-                                                                    <string key="text">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classica</string>
-                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="y2S-ri-IZT" secondAttribute="trailing" id="27Y-JW-rXh"/>
-                                                                <constraint firstAttribute="bottom" secondItem="y2S-ri-IZT" secondAttribute="bottom" id="GIc-fe-4Xz"/>
-                                                                <constraint firstItem="y2S-ri-IZT" firstAttribute="top" secondItem="6Ki-PC-obI" secondAttribute="top" id="hJd-id-QyH"/>
-                                                                <constraint firstItem="y2S-ri-IZT" firstAttribute="leading" secondItem="6Ki-PC-obI" secondAttribute="leading" id="zlI-rQ-bBI"/>
-                                                            </constraints>
-                                                        </view>
-                                                    </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="6Ki-PC-obI" firstAttribute="centerX" secondItem="U7G-uX-fZy" secondAttribute="centerX" id="4HR-Mq-4Al"/>
-                                                        <constraint firstAttribute="trailing" secondItem="6Ki-PC-obI" secondAttribute="trailing" id="BMB-GC-LFX"/>
-                                                        <constraint firstItem="6Ki-PC-obI" firstAttribute="centerY" secondItem="U7G-uX-fZy" secondAttribute="centerY" id="amB-2G-7cV"/>
-                                                        <constraint firstItem="6Ki-PC-obI" firstAttribute="top" secondItem="U7G-uX-fZy" secondAttribute="top" id="dHz-EX-jBL"/>
-                                                        <constraint firstItem="6Ki-PC-obI" firstAttribute="leading" secondItem="U7G-uX-fZy" secondAttribute="leading" id="iir-Ae-R5w"/>
-                                                        <constraint firstAttribute="bottom" secondItem="6Ki-PC-obI" secondAttribute="bottom" id="vrC-K9-lpR"/>
-                                                    </constraints>
-                                                </scrollView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tuneID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qFl-6c-pUT">
-                                                    <rect key="frame" x="123" y="96" width="189" height="19"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="MlM-Tl-wSM" firstAttribute="centerY" secondItem="IIf-LX-1UW" secondAttribute="centerY" id="2Jf-cV-ugy"/>
                                                 <constraint firstItem="qFl-6c-pUT" firstAttribute="bottom" secondItem="IIf-LX-1UW" secondAttribute="bottom" id="3Mr-5k-E0b"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="qFl-6c-pUT" secondAttribute="trailing" id="4rl-hN-JNX"/>
-                                                <constraint firstItem="U7G-uX-fZy" firstAttribute="bottom" secondItem="nfV-TI-BWL" secondAttribute="bottomMargin" id="CbW-3Z-BG3"/>
+                                                <constraint firstItem="bKd-Qq-OEs" firstAttribute="top" secondItem="qFl-6c-pUT" secondAttribute="bottom" constant="8" id="7x6-IB-JaB"/>
                                                 <constraint firstItem="IIf-LX-1UW" firstAttribute="width" secondItem="nfV-TI-BWL" secondAttribute="width" multiplier="1:3" id="DfJ-2S-FA9"/>
                                                 <constraint firstItem="qFl-6c-pUT" firstAttribute="leading" secondItem="IIf-LX-1UW" secondAttribute="trailing" constant="8" id="EKl-qu-MNE"/>
                                                 <constraint firstItem="rcr-XW-Xu4" firstAttribute="leading" secondItem="IIf-LX-1UW" secondAttribute="trailing" constant="8" id="EiL-Go-a2U"/>
                                                 <constraint firstItem="IIf-LX-1UW" firstAttribute="top" secondItem="nfV-TI-BWL" secondAttribute="topMargin" id="GSS-Dq-5ds"/>
                                                 <constraint firstItem="rcr-XW-Xu4" firstAttribute="top" secondItem="IIf-LX-1UW" secondAttribute="top" id="Hxo-y0-lw2"/>
                                                 <constraint firstItem="IIf-LX-1UW" firstAttribute="leading" secondItem="nfV-TI-BWL" secondAttribute="leadingMargin" id="J5T-wP-Cbr"/>
-                                                <constraint firstItem="U7G-uX-fZy" firstAttribute="leading" secondItem="nfV-TI-BWL" secondAttribute="leadingMargin" id="Xvz-yE-dBU"/>
-                                                <constraint firstItem="U7G-uX-fZy" firstAttribute="trailing" secondItem="nfV-TI-BWL" secondAttribute="trailingMargin" id="afB-Kr-GKP"/>
+                                                <constraint firstItem="bKd-Qq-OEs" firstAttribute="trailing" secondItem="nfV-TI-BWL" secondAttribute="trailingMargin" id="ZBA-WE-uXH"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="MlM-Tl-wSM" secondAttribute="trailing" id="agg-jX-6iS"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="rcr-XW-Xu4" secondAttribute="trailing" id="cJL-wI-TC4"/>
-                                                <constraint firstItem="U7G-uX-fZy" firstAttribute="top" secondItem="IIf-LX-1UW" secondAttribute="bottom" constant="8" id="k55-Sj-AwW"/>
+                                                <constraint firstItem="bKd-Qq-OEs" firstAttribute="leading" secondItem="nfV-TI-BWL" secondAttribute="leadingMargin" id="lid-hl-fjW"/>
+                                                <constraint firstItem="bKd-Qq-OEs" firstAttribute="bottom" secondItem="nfV-TI-BWL" secondAttribute="bottomMargin" id="lus-02-SPL"/>
                                                 <constraint firstItem="MlM-Tl-wSM" firstAttribute="leading" secondItem="IIf-LX-1UW" secondAttribute="trailing" constant="8" id="od3-ot-5lp"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="tuneArtImage" destination="IIf-LX-1UW" id="bVX-ig-Ut3"/>
+                                            <outlet property="tuneDescription" destination="bKd-Qq-OEs" id="VDJ-CI-edb"/>
                                             <outlet property="tuneID" destination="qFl-6c-pUT" id="f0v-0m-CLv"/>
                                             <outlet property="tuneName" destination="rcr-XW-Xu4" id="Jph-NX-D3j"/>
                                             <outlet property="tuneType" destination="MlM-Tl-wSM" id="NaQ-m6-kFd"/>

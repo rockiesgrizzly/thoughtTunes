@@ -13,9 +13,7 @@ import Foundation
 import CoreData
 
 extension Category {
-
     @NSManaged var id: String?
     @NSManaged var name: String?
     @NSManaged var song_ids: String?
-
 }

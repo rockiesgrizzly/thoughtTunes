@@ -13,4 +13,5 @@ class TuneCell: UITableViewCell {
     @IBOutlet var tuneName: UILabel!
     @IBOutlet var tuneType: UILabel!
     @IBOutlet var tuneID: UILabel!
+    @IBOutlet var tuneDescription: UITextView!
 }

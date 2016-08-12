@@ -39,11 +39,15 @@ class TagViewControllerTests: XCTestCase {
         XCTAssertTrue(rootViewController is TagViewController)
     }
     
+    func testRefreshControl_IsNotNil() {
+        let refreshControl = viewController.refreshControl
+        
+        XCTAssertNotNil(refreshControl)
+    }
     
     func testDataList_IsNotNil() {
         viewController.dataHandler?.fetchData(.Tag)
         XCTAssertNotNil(viewController.dataHandler?.tagDataList)
-   
     }
     
     

@@ -34,6 +34,12 @@ class CategoryViewControllerTests: XCTestCase {
         XCTAssertTrue(rootViewController is CategoryViewController)
     }
     
+    func testRefreshControl_IsNotNil() {
+        let refreshControl = viewController.refreshControl
+        
+        XCTAssertNotNil(refreshControl)
+    }
+    
     func testTableView_IsNotNilAfterViewDidLoad() {
         XCTAssertNotNil(viewController.catTableView)
     }

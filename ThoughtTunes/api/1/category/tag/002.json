@@ -1,0 +1,112 @@
+[
+	{
+		"name": "25",
+		"id": "301",
+		"song_ids": [401]
+	},
+	{
+		"name": "21",
+		"id": "302",
+		"song_ids": [402]
+	},
+	{
+		"name": "Toys In The Attic",
+		"id": "303",
+		"song_ids": [403]
+	},
+	{
+		"name": "Every Kingdom",
+		"id": "304",
+		"song_ids": [404]
+	},
+	{
+		"name": "Silence",
+		"id": "305",
+		"song_ids": [405]
+	},
+	{
+		"name": "Christmas Lights",
+		"id": "306",
+		"song_ids": [406]
+	},
+	{
+		"name": "Goodbye Yellow Brick Road",
+		"id": "307",
+		"song_ids": [407]
+	},
+	{
+		"name": "The Score",
+		"id": "308",
+		"song_ids": [408, 409]
+	},
+	{
+		"name": "American IV: The Man Comes Around",
+		"id": "309",
+		"song_ids": [410]
+	},
+	{
+		"name": "The 20/20 Experience",
+		"id": "310",
+		"song_ids": [411]
+	},
+	{
+		"name": "To Pimp A Butterfly",
+		"id": "311",
+		"song_ids": [412]
+	},
+	{
+		"name": "Come Around Sundown",
+		"id": "312",
+		"song_ids": [413]
+	},
+	{
+		"name": "Need You Now",
+		"id": "313",
+		"song_ids": [414]
+	},
+	{
+		"name": "Boplicity",
+		"id": "314",
+		"song_ids": [415]
+	},
+	{
+		"name": "Motorizer",
+		"id": "315",
+		"song_ids": [416]
+	},
+	{
+		"name": "A Liturgy, A Legacy & A Ragamuffin Band",
+		"id": "316",
+		"song_ids": [417]
+	},
+	{
+		"name": "Sixpence None The Richer",
+		"id": "317",
+		"song_ids": [418]
+	},
+	{
+		"name": "Where The Light Shines Through",
+		"id": "318",
+		"song_ids": [419]
+	},
+	{
+		"name": "nikki knack",
+		"id": "319",
+		"song_ids": [420]
+	},
+	{
+		"name": "Songs of Innocence",
+		"id": "320",
+		"song_ids": [421]
+	},
+	{
+		"name": "Achtung Baby",
+		"id": "321",
+		"song_ids": [422]
+	},
+	{
+		"name": "Achtung Baby (Deluxe Edition)",
+		"id": "321",
+		"song_ids": [423]
+	}
+]

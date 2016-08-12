@@ -7,6 +7,15 @@
 //
 
 //MARK: Structs
+struct CellTextPrefixes {
+    static let type = "type: "
+    static let songID = "song id: "
+}
+
+struct CustomerFacingText {
+    static let refreshControl = "Pull to refresh"
+}
+
 struct DataType {
     static let cover_url = "cover_url"
     static let description = "description"
@@ -35,11 +44,25 @@ struct VCCellNames {
     static let tuneCell = "tuneCell"
 }
 
+struct TestStrings {
+    static let tuneQueryStringOneValues = "[402]"
+    static let tuneQueryStringTwoValues = "[403, 405]"
+    static let tuneQueryStringMultipleValues = "[407, 406, 409]"
+    static let tuneQueryStringMultipleValuesWithNil = "[410, 412, 511]"
+}
+
+
 struct URLs {
+    //local data filenames
+    static let localTagURL = "tags"
+    static let localTuneURL = "multi"
+    
+    //URLs for testing purposes w/ joshmac.com json files
     static let baseURL = "http://www.joshmac.com/api/1"
-    static let tagURL = baseURL + "/tags"
     static let categoryURL = baseURL + "/category/tag/"
-    static let tuneURL = baseURL + "/api/1/songs/multi/parse"
+    static let idPrefix = "?id="
+    static let tagURL = baseURL + "/tags"
+    static let tuneURL = baseURL + "/songs/multi"
 }
 
 

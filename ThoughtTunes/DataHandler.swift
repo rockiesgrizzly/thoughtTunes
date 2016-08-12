@@ -23,7 +23,7 @@ class DataHandler {
         }
     }
     
-    internal var tuneDataList: [Category]? {
+    internal var tuneDataList: [Tune]? {
         didSet {
             localNotifier.postNotificationName(Notifications.tuneDataListSet, object: self)
         }
@@ -43,7 +43,7 @@ class DataHandler {
     
     
     //MARK: Data Updating
-    func updateData(modelType: ModelType, ifCategoryThenTagType: TagType?) {
+    func updateData(modelType: ModelType, ifCategoryThenTagType: TagType?, ifTuneThenQueryString: String?) {
         let config = NSURLSessionConfiguration.ephemeralSessionConfiguration()
         let session = NSURLSession(configuration: config)
         var urlString: String?
@@ -52,8 +52,8 @@ class DataHandler {
         case .Tag:
             urlString = URLs.tagURL
         case .Category:
-            if let ifCategoryThenTagType = ifCategoryThenTagType {
-                switch ifCategoryThenTagType {
+            if let tagType = ifCategoryThenTagType {
+                switch tagType {
                 case.Artists:
                     urlString = URLs.categoryURL + CategoryType.Artists.rawValue
                 case .Albums:
@@ -65,7 +65,15 @@ class DataHandler {
                 NSLog("tag type not included. url needs this to succeed")
             }
         case .Tune:
-            urlString = URLs.tuneURL
+            if let tuneQueryString = ifTuneThenQueryString {
+                
+                let transformedQueryString = transformQueryString(tuneQueryString)
+                urlString = URLs.tuneURL + URLs.idPrefix + transformedQueryString
+                
+            } else {
+                NSLog("tune query not included. url needs this or url will deliver all songs")
+                urlString = URLs.tuneURL
+            }
         }
 
         
@@ -96,12 +104,11 @@ class DataHandler {
                                 self.clearCoreDataEntity(ModelType.Tag)
                                 
                                 for element in jsonArray {
+                                    let tag = NSEntityDescription.insertNewObjectForEntityForName(ModelType.Tag.rawValue, inManagedObjectContext: privateMoc) as! Tag
+                                    
                                     guard let id = element["id"] as? String else {return}
                                     guard let title = element["title"] as? String else {return}
                                     
-                                    
-                                    //add values to CoreData
-                                    let tag = NSEntityDescription.insertNewObjectForEntityForName(ModelType.Tag.rawValue, inManagedObjectContext: privateMoc) as! Tag
                                     tag.id = id
                                     tag.title = title
                                 }
@@ -109,38 +116,40 @@ class DataHandler {
                                 self.clearCoreDataEntity(ModelType.Category)
                                 
                                 for element in jsonArray {
+                                    let category = NSEntityDescription.insertNewObjectForEntityForName(ModelType.Category.rawValue, inManagedObjectContext: privateMoc) as! Category
+                                    
                                     guard let name = element["name"] as? String else {return}
                                     guard let id = element["id"] as? String else {return}
                                     guard let songIDArray = element["song_ids"] as? [Int] else {return}
                                     
-                                    let category = NSEntityDescription.insertNewObjectForEntityForName(ModelType.Category.rawValue, inManagedObjectContext: privateMoc) as! Category
                                     category.id = id
                                     category.name = name
                                     //convert to String for CoreData since it doesn't accept arrays
                                     category.song_ids = songIDArray.description
                                 }
                                 
-                                
-                                
                             case .Tune:
                                 self.clearCoreDataEntity(ModelType.Tune)
                                 
-                                //                                for element in jsonArray {
-                                //                                    guard let cover_url = element["cover_url"] as String else {return}
-                                //                                    guard let description = element["description"] as String else {return}
-                                //                                    guard let id = element["id"] as Int else {return}
-                                //                                    guard let name = element["name"] as String else {return}
-                                //                                    guard let type = element["type"] as String else {return}
-                                //
-                                //                                    //create managed objects (CoreData)
-                                //                                    let tune = NSEntityDescription.insertNewObjectForEntityForName(ModelType.Tune, inManagedObjectContext: privateMoc) as! Tune
-                                //                                    tune.cover_url = cover_url
-                                //                                    tune.description = description
-                                //                                    tune.id = id
-                                //                                    tune.name = name
-                                //                                    tune.type = type
-                                //                                }
-                            }
+                                for element in jsonArray {
+                                    let tune = NSEntityDescription.insertNewObjectForEntityForName(ModelType.Tune.rawValue, inManagedObjectContext: privateMoc) as! Tune
+                                    
+                                    guard let cover_url = element["cover_url"] as? String else {return}
+                                    guard let tuneDescription = element["description"] as? String else {return}
+                                    guard let name = element["name"] as? String else {return}
+                                    guard let type = element["type"] as? String else {return}
+                                    
+                                    //optional, so fail gracefully
+                                    if let tuneId = element["id"] as? Int {
+                                        tune.id = tuneId.description
+                                    }
+                                    
+                                    tune.cover_url = cover_url
+                                    tune.tuneDescription = tuneDescription
+                                    
+                                    tune.name = name
+                                    tune.type = type
+                                }                            }
                             
                             do {
                                 try privateMoc.save()
@@ -171,6 +180,8 @@ class DataHandler {
         let entity = NSEntityDescription.entityForName(modelType.rawValue, inManagedObjectContext: moc)
         fetchRequest.entity = entity
         
+        
+        
         switch modelType {
         case .Tag:
             let sortDescriptor = NSSortDescriptor(key: DataType.id, ascending: true)
@@ -195,10 +206,18 @@ class DataHandler {
             }
             
         case .Tune:
-            print("placeholder")
+            let sortDescriptor = NSSortDescriptor(key: DataType.name, ascending: true)
+            fetchRequest.sortDescriptors = [sortDescriptor]
+            
+            do {
+                let results = try moc.executeFetchRequest(fetchRequest) as! [Tune]
+                tuneDataList = results
+            } catch let error as NSError {
+                NSLog("error: \(error), \(error.localizedDescription)")
+            }
         }
     }
-
+    
     
     func clearCoreDataEntity(name: ModelType) {
         guard let privateMoc = self.privateMoc else {return}
@@ -213,6 +232,10 @@ class DataHandler {
         catch let error as NSError {
             NSLog("error: \(error), \(error.localizedDescription)")
         }
+    }
+    
+    func transformQueryString(queryString: String) -> String {
+            return queryString.stringByReplacingOccurrencesOfString("[", withString: "").stringByReplacingOccurrencesOfString("]", withString: "").stringByReplacingOccurrencesOfString(", ", withString: "&id=")
     }
     
     

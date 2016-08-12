@@ -13,11 +13,9 @@ import Foundation
 import CoreData
 
 extension Tune {
-
     @NSManaged var cover_url: String?
     @NSManaged var id: String?
     @NSManaged var name: String?
     @NSManaged var tuneDescription: String?
     @NSManaged var type: String?
-
 }

@@ -62,17 +62,10 @@
                             <constraint firstItem="lhr-MG-Yeb" firstAttribute="top" secondItem="bah-do-XmT" secondAttribute="bottom" id="nk7-Ck-B9q"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Tags" id="VKA-u8-OIx">
-                        <barButtonItem key="rightBarButtonItem" title="Update" id="DN2-JZ-duf">
-                            <connections>
-                                <action selector="updateButtonTapped:" destination="NkX-Bi-G18" id="B2u-qp-aG2"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Tags" id="VKA-u8-OIx"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="tagTableView" destination="lhr-MG-Yeb" id="JBx-gU-3tV"/>
-                        <outlet property="updateButton" destination="DN2-JZ-duf" id="yOP-Xn-Kat"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i1S-NE-wCe" userLabel="First Responder" sceneMemberID="firstResponder"/>

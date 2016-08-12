@@ -1,0 +1,97 @@
+[
+	{
+		"name": "Adele",
+		"id": "201",
+		"song_ids": [401, 402]
+	},
+	{
+		"name": "Aerosmith",
+		"id": "202",
+		"song_ids": [403]
+	},
+	{
+		"name": "Ben Howard",
+		"id": "203",
+		"song_ids": [404]
+	},
+	{
+		"name": "Blindside",
+		"id": "204",
+		"song_ids": [405]
+	},
+	{
+		"name": "Coldplay",
+		"id": "205",
+		"song_ids": [406]
+	},
+	{
+		"name": "Elton John",
+		"id": "206",
+		"song_ids": [407]
+	},
+	{
+		"name": "Fugees",
+		"id": "207",
+		"song_ids": [408, 409]
+	},
+	{
+		"name": "Johnny Cash",
+		"id": "208",
+		"song_ids": [410]
+	},
+	{
+		"name": "Justin Timberlake",
+		"id": "209",
+		"song_ids": [411]
+	},
+	{
+		"name": "Kendrick Lamar",
+		"id": "210",
+		"song_ids": [412]
+	},
+	{
+		"name": "Kings of Leon",
+		"id": "211",
+		"song_ids": [413]
+	},
+	{
+		"name": "Lady Antebellum",
+		"id": "212",
+		"song_ids": [414]
+	},
+	{
+		"name": "Miles Davis",
+		"id": "213",
+		"song_ids": [415]
+	},
+	{
+		"name": "Motorhead",
+		"id": "208",
+		"song_ids": [416]
+	},
+	{
+		"name": "Rich Mullins",
+		"id": "209",
+		"song_ids": [417]
+	},
+	{
+		"name": "Sixpence None The Richer",
+		"id": "210",
+		"song_ids": [418]
+	},
+	{
+		"name": "Switchfoot",
+		"id": "211",
+		"song_ids": [419]
+	},
+	{
+		"name": "tUnE-yArDs",
+		"id": "212",
+		"song_ids": [420]
+	},
+	{
+		"name": "U2",
+		"id": "213",
+		"song_ids": [421, 422, 423]
+	}
+]

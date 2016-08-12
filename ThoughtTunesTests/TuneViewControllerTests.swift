@@ -34,21 +34,29 @@ class TuneViewControllerTests: XCTestCase {
         XCTAssertTrue(rootViewController is TuneViewController)
     }
     
+    func testRefreshControl_IsNotNil() {
+        let refreshControl = viewController.refreshControl
+        
+        XCTAssertNotNil(refreshControl)
+    }
+    
+    func testDataList_IsNotNil() {
+        viewController.dataHandler?.fetchData(.Tune)
+        XCTAssertNotNil(viewController.dataHandler?.tuneDataList)
+    }
+    
     
     func testTableView_IsNotNilAfterViewDidLoad() {
         XCTAssertNotNil(viewController.tuneTableView)
     }
     
-    func testDataList_IsNotNil() {
-        XCTAssertNotNil(viewController.dataList)
-    }
     
-    func testTableView_CellForRowIsNotNil() {
-        let tableView = viewController.tuneTableView
-        tableView.reloadData()
-        let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))
-        XCTAssertNotNil(cell)
-    }
+//    func testTableView_CellForRowIsNotNil() {
+//        let tableView = viewController.tuneTableView
+//        tableView.reloadData()
+//        let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))
+//        XCTAssertNotNil(cell)
+//    }
     
     
     

@@ -11,54 +11,86 @@ import UIKit
 class TuneViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var tuneTableView: UITableView!
-    
-    lazy var dataList: [String: String] = {
-        return ["name": "Angel of Harlem", "type": "Basic", "description": "54321", "cover_url": "http://image.jpg", "song_id": "54321"]
-    }()
+    var dataHandler: DataHandler? = DataHandler()
+    var refreshControl = UIRefreshControl()
+    internal var tuneIDQueries: String?
+    var localNotifier = NSNotificationCenter.defaultCenter()
     
     
     //MARK: Lifecycle
     override func viewDidLoad() {
+        updateDataFromTuneIDQueries()
         
+        tuneTableView.estimatedRowHeight = 300
+        tuneTableView.rowHeight = UITableViewAutomaticDimension
+        
+        refreshControl.attributedTitle = NSAttributedString(string: CustomerFacingText.refreshControl)
+        refreshControl.addTarget(self, action: #selector(updateDataFromTuneIDQueries), forControlEvents: .ValueChanged)
+        tuneTableView.addSubview(refreshControl)
     }
     
     
     override func viewWillAppear(animated: Bool) {
-        
+        localNotifier.addObserver(self, selector: #selector(reloadTableView), name: Notifications.tuneDataListSet, object: dataHandler)
+    }
+    
+    deinit {
+        localNotifier.removeObserver(self)
     }
     
     
     
     //MARK: TableView Handling
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return dataList.count
-        return 1
+        if let dataList = dataHandler?.tuneDataList {
+            return dataList.count
+        } else {
+            return 0
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(VCCellNames.tuneCell, forIndexPath: indexPath) as! TuneCell
         
-        cell.tuneName.text = dataList["name"]
-        cell.tuneType.text = dataList["type"]
-        //TODO: figure out if ID should be shown
-        cell.tuneID.text = "54321"
-        
-        dispatch_async(dispatch_get_main_queue()) {
-            if let url  = NSURL(string: "https://images-na.ssl-images-amazon.com/images/I/51W-Reu77aL._SS500_PJStripe-Robin-Large,TopLeft,0,0_SS280.jpg"),
-                data = NSData(contentsOfURL: url)
-            {
-                cell.tuneArtImage.image = UIImage(data: data)
+        if let dataList = dataHandler?.tuneDataList {
+            cell.tuneName.text = dataList[indexPath.row].name
+            cell.tuneDescription.text = dataList[indexPath.row].tuneDescription
+            
+            if let typeFromDataList = dataList[indexPath.row].type {
+                cell.tuneType.text = CellTextPrefixes.type + typeFromDataList
+            }
+            
+            if let idFromDataList = dataList[indexPath.row].id{
+                cell.tuneID.text = CellTextPrefixes.songID + idFromDataList
+            }
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                if let coverUrlString = dataList[indexPath.row].cover_url {
+                    if let url  = NSURL(string: coverUrlString),
+                        data = NSData(contentsOfURL: url)
+                    {
+                        cell.tuneArtImage.image = UIImage(data: data)
+                    }
+                }
             }
         }
-        
-        
-        //TODO: handle Scrollview
-        
+
         return cell
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
+    }
+    
+    func updateDataFromTuneIDQueries() {
+        if let tuneIDQueries = tuneIDQueries {
+            dataHandler?.updateData(.Tune, ifCategoryThenTagType: nil, ifTuneThenQueryString: tuneIDQueries)
+        }
+    }
+    
+    func reloadTableView() {
+        tuneTableView.reloadData()
+        refreshControl.endRefreshing()
     }
     
     

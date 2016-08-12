@@ -13,17 +13,19 @@ import UIKit
 class TagViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet var tagTableView: UITableView!
-    @IBOutlet var updateButton: UIBarButtonItem!
-    var dataHandler: DataHandler? = DataHandler()
+    var refreshControl = UIRefreshControl()
+    var dataHandler: LocalDataHandler? = LocalDataHandler()
     var localNotifier = NSNotificationCenter.defaultCenter()
-    
-    //TODO: create notification for dataLoad
     
     
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataHandler?.updateData(.Tag, ifCategoryThenTagType: nil)
+        dataHandler?.updateData(.Tag, ifCategoryThenTagType: nil, ifTuneThenQueryString: nil)
+        
+        refreshControl.attributedTitle = NSAttributedString(string: CustomerFacingText.refreshControl)
+        refreshControl.addTarget(self, action: #selector(updateData), forControlEvents: .ValueChanged)
+        tagTableView.addSubview(refreshControl)
     }
     
     
@@ -32,6 +34,7 @@ class TagViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         localNotifier.addObserver(self, selector: #selector(reloadTableView), name: Notifications.tagDataListSet, object: dataHandler)
     }
+    
     
     deinit {
         localNotifier.removeObserver(self)
@@ -90,13 +93,14 @@ class TagViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     
-    @IBAction func updateButtonTapped(sender: UIBarButtonItem) {
-        dataHandler?.updateData(.Tag, ifCategoryThenTagType: nil)
+    func updateData() {
+        dataHandler?.updateData(.Tag, ifCategoryThenTagType: nil, ifTuneThenQueryString: nil)
     }
     
     
     func reloadTableView() {
         self.tagTableView.reloadData()
+        refreshControl.endRefreshing()
     }
     
     

@@ -12,7 +12,8 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet var catTableView: UITableView!
     internal var tagChosen: TagType?
-    var dataHandler: DataHandler? = DataHandler()
+    var dataHandler: LocalDataHandler? = LocalDataHandler()
+    var refreshControl = UIRefreshControl()
     var localNotifier = NSNotificationCenter.defaultCenter()
     
     
@@ -21,6 +22,10 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         
         updateDataFromTagType()
+        
+        refreshControl.attributedTitle = NSAttributedString(string: CustomerFacingText.refreshControl)
+        refreshControl.addTarget(self, action: #selector(updateDataFromTagType), forControlEvents: .ValueChanged)
+        catTableView.addSubview(refreshControl)
     }
     
     
@@ -30,8 +35,11 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         localNotifier.addObserver(self, selector: #selector(reloadTableView), name: Notifications.categoryDataListSet, object: dataHandler)
     }
     
-    
-    
+    deinit {
+        localNotifier.removeObserver(self)
+    }
+
+
     //MARK: TableView Handling
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let dataList = dataHandler?.categoryDataList {
@@ -59,24 +67,30 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let storyboard = UIStoryboard(name: VCNames.tuneViewController, bundle: nil)
-        if let vc = storyboard.instantiateViewControllerWithIdentifier(VCNames.tuneViewController) as? TuneViewController {
-            dispatch_async(dispatch_get_main_queue()) {
-                self.showViewController(vc, sender: self)
+        if let dataList = dataHandler?.categoryDataList {
+            
+            let storyboard = UIStoryboard(name: VCNames.tuneViewController, bundle: nil)
+            
+            if let vc = storyboard.instantiateViewControllerWithIdentifier(VCNames.tuneViewController) as? TuneViewController {
+                let tuneIDs = dataList[indexPath.row].song_ids
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    vc.tuneIDQueries = tuneIDs
+                    self.showViewController(vc, sender: self)
+                }
             }
         }
     }
-    
     
     func updateDataFromTagType() {
         if let tagChosen = tagChosen {
             switch tagChosen {
             case .Artists:
-                dataHandler?.updateData(.Category, ifCategoryThenTagType: .Artists)
+                dataHandler?.updateData(.Category, ifCategoryThenTagType: .Artists, ifTuneThenQueryString:  nil)
             case .Albums:
-                dataHandler?.updateData(.Category, ifCategoryThenTagType: .Albums)
+                dataHandler?.updateData(.Category, ifCategoryThenTagType: .Albums, ifTuneThenQueryString: nil)
             case .Genre:
-                dataHandler?.updateData(.Category, ifCategoryThenTagType: .Genre)
+                dataHandler?.updateData(.Category, ifCategoryThenTagType: .Genre, ifTuneThenQueryString: nil)
             }
         }
     }
@@ -89,6 +103,7 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     
     func reloadTableView() {
         self.catTableView.reloadData()
+        refreshControl.endRefreshing()
     }
     
 
