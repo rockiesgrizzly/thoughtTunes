@@ -81,6 +81,9 @@
                                                 <constraint firstItem="MlM-Tl-wSM" firstAttribute="leading" secondItem="IIf-LX-1UW" secondAttribute="trailing" constant="8" id="od3-ot-5lp"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <accessibility key="accessibilityConfiguration" label="Tune Cell">
+                                            <bool key="isElement" value="YES"/>
+                                        </accessibility>
                                         <connections>
                                             <outlet property="tuneArtImage" destination="IIf-LX-1UW" id="bVX-ig-Ut3"/>
                                             <outlet property="tuneDescription" destination="bKd-Qq-OEs" id="VDJ-CI-edb"/>

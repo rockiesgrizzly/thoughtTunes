@@ -13,7 +13,7 @@ struct CellTextPrefixes {
 }
 
 struct CustomerFacingText {
-    static let refreshControl = "Pull to refresh"
+    static let refreshControl = "Pull to Refresh"
 }
 
 struct DataType {
@@ -53,16 +53,16 @@ struct TestStrings {
 
 
 struct URLs {
-    //local data filenames
-    static let localTagURL = "tags"
-    static let localTuneURL = "multi"
-    
     //URLs for testing purposes w/ joshmac.com json files
     static let baseURL = "http://www.joshmac.com/api/1"
     static let categoryURL = baseURL + "/category/tag/"
     static let idPrefix = "?id="
     static let tagURL = baseURL + "/tags"
     static let tuneURL = baseURL + "/songs/multi"
+    
+    //local data filenames
+    static let localTagURL = "tags"
+    static let localTuneURL = "multi"
 }
 
 

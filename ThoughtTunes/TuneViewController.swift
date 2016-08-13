@@ -21,7 +21,7 @@ class TuneViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         updateDataFromTuneIDQueries()
         
-        tuneTableView.estimatedRowHeight = 300
+        tuneTableView.estimatedRowHeight = 500
         tuneTableView.rowHeight = UITableViewAutomaticDimension
         
         refreshControl.attributedTitle = NSAttributedString(string: CustomerFacingText.refreshControl)
@@ -50,31 +50,41 @@ class TuneViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let privateQueue = dispatch_queue_create("com.floydhillcode.queue", DISPATCH_QUEUE_CONCURRENT)
         let cell = tableView.dequeueReusableCellWithIdentifier(VCCellNames.tuneCell, forIndexPath: indexPath) as! TuneCell
         
         if let dataList = dataHandler?.tuneDataList {
-            cell.tuneName.text = dataList[indexPath.row].name
-            cell.tuneDescription.text = dataList[indexPath.row].tuneDescription
-            
-            if let typeFromDataList = dataList[indexPath.row].type {
-                cell.tuneType.text = CellTextPrefixes.type + typeFromDataList
-            }
-            
-            if let idFromDataList = dataList[indexPath.row].id{
-                cell.tuneID.text = CellTextPrefixes.songID + idFromDataList
-            }
-            
-            dispatch_async(dispatch_get_main_queue()) {
+            dispatch_async(privateQueue) {
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    cell.tuneName.text = dataList[indexPath.row].name
+                    cell.tuneDescription.text = dataList[indexPath.row].tuneDescription
+                }
+                
+                if let typeFromDataList = dataList[indexPath.row].type {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        cell.tuneType.text = CellTextPrefixes.type + typeFromDataList
+                    }
+                }
+                
+                if let idFromDataList = dataList[indexPath.row].id{
+                    dispatch_async(dispatch_get_main_queue()) {
+                        cell.tuneID.text = CellTextPrefixes.songID + idFromDataList
+                    }
+                }
+                
                 if let coverUrlString = dataList[indexPath.row].cover_url {
                     if let url  = NSURL(string: coverUrlString),
                         data = NSData(contentsOfURL: url)
                     {
-                        cell.tuneArtImage.image = UIImage(data: data)
+                        dispatch_async(dispatch_get_main_queue()) {
+                            cell.tuneArtImage.image = UIImage(data: data)
+                        }
                     }
                 }
             }
         }
-
+        
         return cell
     }
     
@@ -94,6 +104,6 @@ class TuneViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
-
-
+    
+    
 }

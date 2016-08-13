@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import OHHTTPStubs
 @testable import ThoughtTunes
 
 class DataHandlerTests: XCTestCase {

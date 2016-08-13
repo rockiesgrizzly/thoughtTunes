@@ -53,10 +53,15 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(VCCellNames.categoryCell, forIndexPath: indexPath) as! CategoryCell
         
-        if let dataList = dataHandler?.categoryDataList {
-            cell.categoryName.text = dataList[indexPath.row].name
-        }
+        let privateQueue = dispatch_queue_create("com.floydhillcode.queue", DISPATCH_QUEUE_CONCURRENT)
         
+        dispatch_async(privateQueue) {
+            if let dataList = self.dataHandler?.categoryDataList {
+                dispatch_async(dispatch_get_main_queue()) {
+                    cell.categoryName.text = dataList[indexPath.row].name
+                }
+            }
+        }
         return cell
     }
     

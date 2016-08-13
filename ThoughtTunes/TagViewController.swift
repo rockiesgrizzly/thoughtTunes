@@ -14,7 +14,7 @@ class TagViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     @IBOutlet var tagTableView: UITableView!
     var refreshControl = UIRefreshControl()
-    var dataHandler: LocalDataHandler? = LocalDataHandler()
+    var dataHandler: DataHandler? = DataHandler()
     var localNotifier = NSNotificationCenter.defaultCenter()
     
     
@@ -60,8 +60,14 @@ class TagViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(VCCellNames.tagCell, forIndexPath: indexPath) as! TagCell
         
-        if let dataList = dataHandler?.tagDataList {
-            cell.tagName.text = dataList[indexPath.row].title
+        let privateQueue = dispatch_queue_create("com.floydhillcode.queue", DISPATCH_QUEUE_CONCURRENT)
+        
+        dispatch_async(privateQueue) {
+            if let dataList = self.dataHandler?.tagDataList {
+                dispatch_async(dispatch_get_main_queue()) {
+                    cell.tagName.text = dataList[indexPath.row].title
+                }
+            }
         }
         
         return cell

@@ -232,9 +232,5 @@ class LocalDataHandler {
     
     func transformQueryString(queryString: String) -> String {
         return queryString.stringByReplacingOccurrencesOfString("[", withString: "").stringByReplacingOccurrencesOfString("]", withString: "").stringByReplacingOccurrencesOfString(", ", withString: "&id=")
-    }
-    
-    
-    
-    
+    }    
 }
