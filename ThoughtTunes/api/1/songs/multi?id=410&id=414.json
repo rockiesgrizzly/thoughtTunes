@@ -1,0 +1,16 @@
+[
+	{
+		"id": 410,
+		"name": "Hurt",
+		"type": "stream",
+		"description": "Trent Reznor was one-upped when Cash touched his famous tune. The man in black's career encapsulated in a single song.",
+		"cover_url": "https://images-na.ssl-images-amazon.com/images/I/41shB77SBCL._SS500_PJStripe-Robin-Large,TopLeft,0,0_SS280.jpg"
+	},
+	{
+		"id": 414,
+		"name": "Need You Now",
+		"type": "basic",
+		"description": "Had to get atleast one radio hit in the database. I don't care if it's cheesy. It's a good tune.",
+		"cover_url": "https://images-na.ssl-images-amazon.com/images/I/51N2hQw0D2L._SS500_SS280.jpg"
+	}
+]

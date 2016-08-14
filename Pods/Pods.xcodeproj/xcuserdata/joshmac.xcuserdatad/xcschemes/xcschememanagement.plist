@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>OHHTTPStubs.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-ThoughtTunes.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,17 +27,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>65068B06081E7C3728E201FD9DED25E5</key>
+		<key>228D822032B034927C26A2A595EFBBE6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>94A1B9F970724E7D802EEB30446BD014</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CCB3AA4EC5E642E2EEAEF6EFBB19B629</key>
+		<key>D3667D35019C255B21063FB1E1841473</key>
 		<dict>
 			<key>primary</key>
 			<true/>

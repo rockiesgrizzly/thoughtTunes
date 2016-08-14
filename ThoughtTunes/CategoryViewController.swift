@@ -10,9 +10,11 @@ import UIKit
 
 class CategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    //TODO: for local data, use LocalDataHandler(); for external url, use DataHandler()
+    var dataHandler: LocalDataHandler? = LocalDataHandler()
+    
     @IBOutlet var catTableView: UITableView!
     internal var tagChosen: TagType?
-    var dataHandler: LocalDataHandler? = LocalDataHandler()
     var refreshControl = UIRefreshControl()
     var localNotifier = NSNotificationCenter.defaultCenter()
     

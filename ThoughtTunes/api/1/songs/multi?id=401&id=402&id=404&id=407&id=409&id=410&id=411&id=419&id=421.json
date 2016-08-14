@@ -1,0 +1,65 @@
+[
+	{
+		"id": 401,
+		"name": "When We Were Young",
+		"type": "basic",
+		"description": "beautiful tune from the latest album. well worth a listen.",
+		"cover_url": "https://images-na.ssl-images-amazon.com/images/I/51W-Reu77aL._SS500_PJStripe-Robin-Large,TopLeft,0,0_SS280.jpg"
+	},
+	{
+		"id": 402,
+		"name": "Rolling In The Deep",
+		"type": "basic",
+		"description": "get ready to regret when you broke Adele's heart, you foolish, foolish man.",
+		"cover_url": "https://images-na.ssl-images-amazon.com/images/I/41diGvHBTWL._SS500_PJStripe-Robin-Large,TopLeft,0,0_SS280.jpg"
+	},
+	{
+		"id": 404,
+		"name": "Only Love",
+		"type": "stream",
+		"description": "I'll never forget walking into a New York hotel lobby, hearing the breathtaking interlude for this tune, and running to my hotel room while I desperately tried to remember the words and look this one up. I adore it.",
+		"cover_url": "https://images-na.ssl-images-amazon.com/images/I/41Cwo0B6gcL.jpg"
+	},
+	{
+		"id": 407,
+		"name": "Goodbye Yellow Brick Road",
+		"type": "stream",
+		"description": "Elton works his magic on the piano with great band orchestration bringing a difficult musical composition into an accessible sound.",
+		"cover_url": "https://images-na.ssl-images-amazon.com/images/I/61Wt1N7JIcL._SS500_PJStripe-Robin-Large,TopLeft,0,0_SS280.jpg"
+	},
+	{
+		"id": 409,
+		"name": "Killing Me Softly",
+		"type": "artist",
+		"description": "One of the most beatiful diva voices on one of the most beautiful tunes.",
+		"cover_url": "https://images-na.ssl-images-amazon.com/images/I/41WzkSooA8L._SS500_PJStripe-Robin-Large,TopLeft,0,0_SS280.jpg"
+	},
+	{
+		"id": 410,
+		"name": "Hurt",
+		"type": "stream",
+		"description": "Trent Reznor was one-upped when Cash touched his famous tune. The man in black's career encapsulated in a single song.",
+		"cover_url": "https://images-na.ssl-images-amazon.com/images/I/41shB77SBCL._SS500_PJStripe-Robin-Large,TopLeft,0,0_SS280.jpg"
+	},
+	{
+		"id": 411,
+		"name": "Tunnel Vision",
+		"type": "stream",
+		"description": "Timberlake's best record to date. Smart samples with great beats and Justin especially on point",
+		"cover_url": "https://images-na.ssl-images-amazon.com/images/I/51fPYIf0aQL._SS500_SS280.jpg"
+	},
+	{
+		"id": 419,
+		"name": "If The House Burns Down Tonight",
+		"type": "basic",
+		"description": "This is my current psych-up song. The San Diego surfers bring it again",
+		"cover_url": "https://images-na.ssl-images-amazon.com/images/I/61LUbT0PYFL._SS500_SS280.jpg"
+	},
+	{
+		"id": 421,
+		"name": "Every Breaking Wave",
+		"type": "artist",
+		"description": "This song was performed on U2's recent tour in acoustic version, but the original is worth a listen. So good.",
+		"cover_url": "https://images-na.ssl-images-amazon.com/images/I/41ul-zFahGL._SS500_PJStripe-Robin-Large,TopLeft,0,0_SS280.jpg"
+	}
+]

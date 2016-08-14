@@ -12,9 +12,11 @@ import UIKit
 
 class TagViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    //TODO: for local data, use LocalDataHandler(); for external url, use DataHandler()
+    var dataHandler: LocalDataHandler? = LocalDataHandler()
+    
     @IBOutlet var tagTableView: UITableView!
     var refreshControl = UIRefreshControl()
-    var dataHandler: DataHandler? = DataHandler()
     var localNotifier = NSNotificationCenter.defaultCenter()
     
     

@@ -29,6 +29,8 @@ class TagViewControllerTests: XCTestCase {
     
     override func tearDown() {
         super.tearDown()
+        
+        //OHHTTPStubs.removeAllStubs()
     }
     
     

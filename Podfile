@@ -6,13 +6,11 @@ target 'ThoughtTunes' do
   use_frameworks!
 
   # Pods for ThoughtTunes
-    pod 'OHHTTPStubs'
-    pod 'OHHTTPStubs/Swift'
+
 
   target 'ThoughtTunesTests' do
     inherit! :search_paths
-    pod 'OHHTTPStubs'
-    pod 'OHHTTPStubs/Swift'
+
   end
 
   target 'ThoughtTunesUITests' do

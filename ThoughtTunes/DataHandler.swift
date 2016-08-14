@@ -7,7 +7,6 @@
 //
 import UIKit
 import CoreData
-import OHHTTPStubs
 
 class DataHandler {
     var localNotifier = NSNotificationCenter.defaultCenter()
@@ -47,9 +46,6 @@ class DataHandler {
     //MARK: Data Updating
     func updateData(modelType: ModelType, ifCategoryThenTagType: TagType?, ifTuneThenQueryString: String?) {
         
-        
-        
-        
         let config = NSURLSessionConfiguration.ephemeralSessionConfiguration()
         let session = NSURLSession(configuration: config)
         var urlString: String?
@@ -81,9 +77,6 @@ class DataHandler {
                 urlString = URLs.tuneURL
             }
         }
-        
-        //TODO: remove to cancel stubbing for testing
-        useStubbingForTesting()
         
         
         if let urlString = urlString {
@@ -189,8 +182,6 @@ class DataHandler {
         let entity = NSEntityDescription.entityForName(modelType.rawValue, inManagedObjectContext: moc)
         fetchRequest.entity = entity
         
-        
-        
         switch modelType {
         case .Tag:
             let sortDescriptor = NSSortDescriptor(key: DataType.id, ascending: true)
@@ -246,21 +237,6 @@ class DataHandler {
     
     func transformQueryString(queryString: String) -> String {
         return queryString.stringByReplacingOccurrencesOfString("[", withString: "").stringByReplacingOccurrencesOfString("]", withString: "").stringByReplacingOccurrencesOfString(", ", withString: "&id=")
-    }
-    
-    
-    func useStubbingForTesting() {
-        stub(isHost("joshmac.com") && isPath("/api/1")) { _ in
-            guard let path = OHPathForFile("tags.json", self.dynamicType) else {
-                preconditionFailure("Could not find expected file in test bundle")
-            }
-            
-            return OHHTTPStubsResponse(
-                fileAtPath: path,
-                statusCode: 200,
-                headers: [ "Content-Type": "application/json" ]
-            )
-        }
     }
     
     

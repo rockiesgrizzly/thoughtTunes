@@ -1,0 +1,72 @@
+[
+	{
+		"id": 403,
+		"name": "Adam's Apple",
+		"type": "artist",
+		"description": "great riff with Aerosmith's classic rock goodness.",
+		"cover_url": "https://images-na.ssl-images-amazon.com/images/I/51kRVgKQo6L._SS500_PJStripe-Robin-Large,TopLeft,0,0_SS280.jpg"
+	},
+	{
+		"id": 405,
+		"name": "Caught A Glimpse",
+		"type": "artist",
+		"description": "One of the most inventive rock songs ever recorded. Still stands the test of time.",
+		"cover_url": "https://images-na.ssl-images-amazon.com/images/I/61IE0ZMVSaL._SS500_SS280.jpg"
+	},
+	{
+		"id": 407,
+		"name": "Goodbye Yellow Brick Road",
+		"type": "stream",
+		"description": "Elton works his magic on the piano with great band orchestration bringing a difficult musical composition into an accessible sound.",
+		"cover_url": "https://images-na.ssl-images-amazon.com/images/I/61Wt1N7JIcL._SS500_PJStripe-Robin-Large,TopLeft,0,0_SS280.jpg"
+	},
+	{
+		"id": 413,
+		"name": "The End",
+		"type": "basic",
+		"description": "This tune began a great southern rock album with a little irony.",
+		"cover_url": "https://images-na.ssl-images-amazon.com/images/I/51A1S%2Bmam-L._SS500_PJStripe-Robin-Large,TopLeft,0,0_SS280.jpg"
+	},
+	{
+		"id": 416,
+		"name": "(Teach You How To) Sing The Blues",
+		"type": "artist",
+		"description": "If you've never seen the Lemy documentary, go watch it. Now. Grandfather of metal brings it.",
+		"cover_url": "https://images-na.ssl-images-amazon.com/images/I/51G2He0byTL._SS500_SS280.jpg"
+	},
+	{
+		"id": 419,
+		"name": "If The House Burns Down Tonight",
+		"type": "basic",
+		"description": "This is my current psych-up song. The San Diego surfers bring it again",
+		"cover_url": "https://images-na.ssl-images-amazon.com/images/I/61LUbT0PYFL._SS500_SS280.jpg"
+	},
+	{
+		"id": 420,
+		"name": "Real Thing",
+		"type": "basic",
+		"description": "If you want to broaden your sonic horizons, check this one out. It shouldn't work, but it does.",
+		"cover_url": "https://images-na.ssl-images-amazon.com/images/I/51X5LM6lthL._SS500_SS280.jpg"
+	},
+	{
+		"id": 421,
+		"name": "Every Breaking Wave",
+		"type": "artist",
+		"description": "This song was performed on U2's recent tour in acoustic version, but the original is worth a listen. So good.",
+		"cover_url": "https://images-na.ssl-images-amazon.com/images/I/41ul-zFahGL._SS500_PJStripe-Robin-Large,TopLeft,0,0_SS280.jpg"
+	},
+	{
+		"id": 423,
+		"name": "Acrobat",
+		"type": "artist",
+		"description": "This lesser known hit from the Irishmen shows a depth that often is overlooked after so many hits.",
+		"cover_url": "https://images-na.ssl-images-amazon.com/images/I/6194gwLlJ6L._SS500_PJStripe-Robin-Large,TopLeft,0,0_SS280.jpg"
+	},
+	{
+		"id": 424,
+		"name": "Even Better Than The Real Thing",
+		"type": "artist",
+		"description": "U2 took this remake of their hit song and it became a live staple on the 360 Tour.",
+		"cover_url": "https://images-na.ssl-images-amazon.com/images/I/51YuEp7gUzL._SS500_PJStripe-Robin-Large,TopLeft,0,0_SS280.jpg"
+	}
+]

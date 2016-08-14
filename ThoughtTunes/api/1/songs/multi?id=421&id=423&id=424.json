@@ -1,0 +1,23 @@
+[
+	{
+		"id": 421,
+		"name": "Every Breaking Wave",
+		"type": "artist",
+		"description": "This song was performed on U2's recent tour in acoustic version, but the original is worth a listen. So good.",
+		"cover_url": "https://images-na.ssl-images-amazon.com/images/I/41ul-zFahGL._SS500_PJStripe-Robin-Large,TopLeft,0,0_SS280.jpg"
+	},
+	{
+		"id": 423,
+		"name": "Acrobat",
+		"type": "artist",
+		"description": "This lesser known hit from the Irishmen shows a depth that often is overlooked after so many hits.",
+		"cover_url": "https://images-na.ssl-images-amazon.com/images/I/6194gwLlJ6L._SS500_PJStripe-Robin-Large,TopLeft,0,0_SS280.jpg"
+	},
+	{
+		"id": 424,
+		"name": "Even Better Than The Real Thing",
+		"type": "artist",
+		"description": "U2 took this remake of their hit song and it became a live staple on the 360 Tour.",
+		"cover_url": "https://images-na.ssl-images-amazon.com/images/I/51YuEp7gUzL._SS500_PJStripe-Robin-Large,TopLeft,0,0_SS280.jpg"
+	}
+]

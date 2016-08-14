@@ -10,8 +10,10 @@ import UIKit
 
 class TuneViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    //TODO: for local data, use LocalDataHandler(); for external url, use DataHandler()
+    var dataHandler: LocalDataHandler? = LocalDataHandler()
+    
     @IBOutlet var tuneTableView: UITableView!
-    var dataHandler: DataHandler? = DataHandler()
     var refreshControl = UIRefreshControl()
     internal var tuneIDQueries: String?
     var localNotifier = NSNotificationCenter.defaultCenter()
@@ -55,7 +57,6 @@ class TuneViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         if let dataList = dataHandler?.tuneDataList {
             dispatch_async(privateQueue) {
-                
                 dispatch_async(dispatch_get_main_queue()) {
                     cell.tuneName.text = dataList[indexPath.row].name
                     cell.tuneDescription.text = dataList[indexPath.row].tuneDescription

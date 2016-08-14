@@ -1,0 +1,23 @@
+[
+	{
+		"id": 401,
+		"name": "When We Were Young",
+		"type": "basic",
+		"description": "beautiful tune from the latest album. well worth a listen.",
+		"cover_url": "https://images-na.ssl-images-amazon.com/images/I/51W-Reu77aL._SS500_PJStripe-Robin-Large,TopLeft,0,0_SS280.jpg"
+	},
+	{
+		"id": 402,
+		"name": "Rolling In The Deep",
+		"type": "basic",
+		"description": "get ready to regret when you broke Adele's heart, you foolish, foolish man.",
+		"cover_url": "https://images-na.ssl-images-amazon.com/images/I/41diGvHBTWL._SS500_PJStripe-Robin-Large,TopLeft,0,0_SS280.jpg"
+	},
+	{
+		"id": 404,
+		"name": "Only Love",
+		"type": "stream",
+		"description": "I'll never forget walking into a New York hotel lobby, hearing the breathtaking interlude for this tune, and running to my hotel room while I desperately tried to remember the words and look this one up. I adore it.",
+		"cover_url": "https://images-na.ssl-images-amazon.com/images/I/41Cwo0B6gcL.jpg"
+	}
+]

@@ -1,0 +1,30 @@
+[
+	{
+		"id": 406,
+		"name": "Christmas Lights",
+		"type": "artist",
+		"description": "So simple. One of my favorite holiday tunes to enjoy with a nice evening cup of tea and a good book.",
+		"cover_url": "https://images-na.ssl-images-amazon.com/images/I/51pYNVOsrdL._SS500_SS280.jpg"
+	},
+	{
+		"id": 418,
+		"name": "Love",
+		"type": "stream",
+		"description": "This 'Kiss Me' band was blessed and cursed by that hit. It overshadowed some incredible tunes",
+		"cover_url": "https://images-na.ssl-images-amazon.com/images/I/517Tyf-wTnL._SS500_SS280.jpg"
+	},
+	{
+		"id": 420,
+		"name": "Real Thing",
+		"type": "basic",
+		"description": "If you want to broaden your sonic horizons, check this one out. It shouldn't work, but it does.",
+		"cover_url": "https://images-na.ssl-images-amazon.com/images/I/51X5LM6lthL._SS500_SS280.jpg"
+	},
+	{
+		"id": 423,
+		"name": "Acrobat",
+		"type": "artist",
+		"description": "This lesser known hit from the Irishmen shows a depth that often is overlooked after so many hits.",
+		"cover_url": "https://images-na.ssl-images-amazon.com/images/I/6194gwLlJ6L._SS500_PJStripe-Robin-Large,TopLeft,0,0_SS280.jpg"
+	}
+]

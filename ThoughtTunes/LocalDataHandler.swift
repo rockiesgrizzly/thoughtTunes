@@ -68,7 +68,7 @@ class LocalDataHandler {
             if let tuneQueryString = ifTuneThenQueryString {
                 
                 let transformedQueryString = transformQueryString(tuneQueryString)
-                urlString = URLs.tuneURL + URLs.idPrefix + transformedQueryString
+                urlString = URLs.localTuneURL + URLs.idPrefix + transformedQueryString
                 
             } else {
                 NSLog("tune query not included. url needs this or url will deliver all songs")
@@ -77,10 +77,9 @@ class LocalDataHandler {
         }
         
         if let url = NSBundle.mainBundle().URLForResource(urlString, withExtension: "json") {
-            NSLog("url: \(url)")
+           // NSLog("url: \(url)")
             
             do {
-                
                 let data = try NSData(contentsOfURL: url, options: .DataReadingMappedIfSafe)
                 
                 do {
