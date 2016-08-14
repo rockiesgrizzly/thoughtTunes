@@ -37,7 +37,11 @@ class ThoughtTunesUITests: XCTestCase {
         tablesQuery.staticTexts["Aerosmith"].tap()
         XCTAssert(tablesQuery.cells.containingType(.StaticText, identifier:"Adam's Apple").element.exists)
         
-        tablesQuery.cells.containingType(.StaticText, identifier:"Adam's Apple").element.tap()
+        // test U2 - bottom of the table
+        app.navigationBars["Tunes"].buttons["Categories"].tap()
+        XCTAssert(tablesQuery.staticTexts["U2"].exists)
+        tablesQuery.staticTexts["U2"].tap()
+        XCTAssert(tablesQuery.cells.containingType(.StaticText, identifier:"Every Breaking Wave").element.exists)
     }
     
     
@@ -49,8 +53,13 @@ class ThoughtTunesUITests: XCTestCase {
         albumsStaticText.tap()
         XCTAssert(tablesQuery.staticTexts["Achtung Baby"].exists)
         tablesQuery.staticTexts["Achtung Baby"].tap()
+        XCTAssert(tablesQuery.cells.containingType(.StaticText, identifier:"Acrobat").element.exists)
         
-        tablesQuery.cells.containingType(.StaticText, identifier:"Acrobat").element.tap()
+        //near bottom of the table
+        app.navigationBars["Tunes"].buttons["Categories"].tap()
+        XCTAssert(tablesQuery.staticTexts["Where The Light Shines Through"].exists)
+        tablesQuery.staticTexts["Where The Light Shines Through"].tap()
+        XCTAssert(tablesQuery.cells.containingType(.StaticText, identifier:"If The House Burns Down Tonight").element.exists)
     }
     
     
@@ -60,10 +69,17 @@ class ThoughtTunesUITests: XCTestCase {
         let genreStaticText = tablesQuery.staticTexts["Genre"]
         
         genreStaticText.tap()
-        XCTAssert(tablesQuery.staticTexts["Alternative"].exists)
-        tablesQuery.staticTexts["Alternative"].tap()
+        XCTAssert(tablesQuery.staticTexts["Holiday"].exists)
+        tablesQuery.staticTexts["Holiday"].tap()
+        XCTAssert(tablesQuery.cells.containingType(.StaticText, identifier:"Christmas Lights").element.exists)
         
-        //tablesQuery.cells.containingType(.StaticText, identifier:"Christmas Lights").element.tap()
+        //near bottom of the table
+        app.navigationBars["Tunes"].buttons["Categories"].tap()
+        XCTAssert(tablesQuery.staticTexts["Rap"].exists)
+        tablesQuery.staticTexts["Rap"].tap()
+        XCTAssert(tablesQuery.cells.containingType(.StaticText, identifier:"These Walls").element.exists)
+        
+        XCUIDevice.sharedDevice().orientation = .FaceUp
     }
     
 }

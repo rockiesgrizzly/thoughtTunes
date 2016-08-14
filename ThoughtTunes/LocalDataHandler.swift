@@ -165,10 +165,7 @@ class LocalDataHandler {
         }
     }
     
-    
-    
-    
-    
+
     func fetchData(modelType: ModelType) {
         guard let moc = mainMoc else {return}
         let fetchRequest = NSFetchRequest()

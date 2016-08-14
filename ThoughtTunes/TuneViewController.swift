@@ -36,6 +36,7 @@ class TuneViewController: UIViewController, UITableViewDelegate, UITableViewData
         localNotifier.addObserver(self, selector: #selector(reloadTableView), name: Notifications.tuneDataListSet, object: dataHandler)
     }
     
+    
     deinit {
         localNotifier.removeObserver(self)
     }
@@ -50,6 +51,7 @@ class TuneViewController: UIViewController, UITableViewDelegate, UITableViewData
             return 0
         }
     }
+    
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let privateQueue = dispatch_queue_create("com.floydhillcode.queue", DISPATCH_QUEUE_CONCURRENT)
@@ -89,15 +91,18 @@ class TuneViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
+    
     
     func updateDataFromTuneIDQueries() {
         if let tuneIDQueries = tuneIDQueries {
             dataHandler?.updateData(.Tune, ifCategoryThenTagType: nil, ifTuneThenQueryString: tuneIDQueries)
         }
     }
+    
     
     func reloadTableView() {
         tuneTableView.reloadData()

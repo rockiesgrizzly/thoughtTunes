@@ -18,6 +18,7 @@ class TagViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet var tagTableView: UITableView!
     var refreshControl = UIRefreshControl()
     var localNotifier = NSNotificationCenter.defaultCenter()
+    let privateQueue = dispatch_queue_create("com.floydhillcode.queue", DISPATCH_QUEUE_CONCURRENT)
     
     
     //MARK: Lifecycle
@@ -62,8 +63,6 @@ class TagViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(VCCellNames.tagCell, forIndexPath: indexPath) as! TagCell
         
-        let privateQueue = dispatch_queue_create("com.floydhillcode.queue", DISPATCH_QUEUE_CONCURRENT)
-        
         dispatch_async(privateQueue) {
             if let dataList = self.dataHandler?.tagDataList {
                 dispatch_async(dispatch_get_main_queue()) {
@@ -87,12 +86,14 @@ class TagViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                 dispatch_async(dispatch_get_main_queue()) {
                     if tagTitle == TagType.Artists.rawValue {
                         vc.tagChosen = TagType.Artists
-                        self.showViewController(vc, sender: self)
                     } else if tagTitle == TagType.Albums.rawValue {
                         vc.tagChosen = TagType.Albums
-                        self.showViewController(vc, sender: self)
                     } else if tagTitle == TagType.Genre.rawValue {
                         vc.tagChosen = TagType.Genre
+                        
+                    }
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
                         self.showViewController(vc, sender: self)
                     }
                 }

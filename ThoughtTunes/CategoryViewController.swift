@@ -17,6 +17,7 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     internal var tagChosen: TagType?
     var refreshControl = UIRefreshControl()
     var localNotifier = NSNotificationCenter.defaultCenter()
+    let privateQueue = dispatch_queue_create("com.floydhillcode.queue", DISPATCH_QUEUE_CONCURRENT)
     
     
     //MARK: Lifecycle
@@ -37,11 +38,12 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         localNotifier.addObserver(self, selector: #selector(reloadTableView), name: Notifications.categoryDataListSet, object: dataHandler)
     }
     
+    
     deinit {
         localNotifier.removeObserver(self)
     }
-
-
+    
+    
     //MARK: TableView Handling
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let dataList = dataHandler?.categoryDataList {
@@ -54,8 +56,6 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(VCCellNames.categoryCell, forIndexPath: indexPath) as! CategoryCell
-        
-        let privateQueue = dispatch_queue_create("com.floydhillcode.queue", DISPATCH_QUEUE_CONCURRENT)
         
         dispatch_async(privateQueue) {
             if let dataList = self.dataHandler?.categoryDataList {
@@ -79,15 +79,18 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
             let storyboard = UIStoryboard(name: VCNames.tuneViewController, bundle: nil)
             
             if let vc = storyboard.instantiateViewControllerWithIdentifier(VCNames.tuneViewController) as? TuneViewController {
-                let tuneIDs = dataList[indexPath.row].song_ids
-                
-                dispatch_async(dispatch_get_main_queue()) {
-                    vc.tuneIDQueries = tuneIDs
-                    self.showViewController(vc, sender: self)
+                dispatch_async(privateQueue) {
+                    let tuneIDs = dataList[indexPath.row].song_ids
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
+                        vc.tuneIDQueries = tuneIDs
+                        self.showViewController(vc, sender: self)
+                    }
                 }
             }
         }
     }
+    
     
     func updateDataFromTagType() {
         if let tagChosen = tagChosen {
@@ -113,7 +116,7 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         refreshControl.endRefreshing()
     }
     
-
-
-
+    
+    
+    
 }

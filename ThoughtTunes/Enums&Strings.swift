@@ -51,7 +51,6 @@ struct TestStrings {
     static let tuneQueryStringMultipleValuesWithNil = "[410, 412, 511]"
 }
 
-
 struct URLs {
     //URLs for testing purposes w/ joshmac.com json files
     static let baseURL = "http://www.joshmac.com/api/1"
