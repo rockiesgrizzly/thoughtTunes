@@ -7,18 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07D002DF4E185BE5A7074F10A742E1BD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC4DC3D8EFEFCB57DD743BA66A83A5F6 /* Foundation.framework */; };
 		1D96A9E78787F23E00744EFA36F9BE4B /* OHPathHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 405A1761163ED3C7136045A3919C59E4 /* OHPathHelpers.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		380D45B66CEDF2C64EADA916FD9FFE43 /* OHHTTPStubs+NSURLSessionConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E47B0889E2702E4BE7664F4BAE85E76 /* OHHTTPStubs+NSURLSessionConfiguration.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		474F70E92CD8526D8D73EC83C2F42D1A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 232CC40B6BDED99579A8A76AF55C1F9B /* CFNetwork.framework */; };
-		4963DC31B0B27B5F84D26CBAF8FBD4A0 /* Pods-ThoughtTunesUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D4D6ADD568806D0BDCFE8BAE9B7B5D16 /* Pods-ThoughtTunesUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5A1EC279BD4BAA9932744F697F125976 /* Pods-ThoughtTunesUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF09BA195ABEA2D331FDC5D3DB60967 /* Pods-ThoughtTunesUITests-dummy.m */; };
 		5DA766555E17E3E82988AFA4488A5676 /* Pods-ThoughtTunes-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9590B7DB4A1D38DFA2EE1476E9699E59 /* Pods-ThoughtTunes-dummy.m */; };
+		60BA92DD404134E9EC0477DE2EB0D217 /* Pods-ThoughtTunesUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D4D6ADD568806D0BDCFE8BAE9B7B5D16 /* Pods-ThoughtTunesUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		648A315E6C4EDA19D909DE6FD58B9ACD /* OHHTTPStubsSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1D1E744482C1D77E7BAC34A107EB00 /* OHHTTPStubsSwift.swift */; };
 		70E45A9870C463BDEFD7019F5FF32D03 /* OHHTTPStubsResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = FABA06066180AB75E4897FA88F50FE16 /* OHHTTPStubsResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7295F4E873343EADA45624FBE94D2F74 /* OHHTTPStubsResponse+JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = B33FC1CC2BA5B8EA196198F91E39C4B6 /* OHHTTPStubsResponse+JSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8D4026CE7290B3A91C1E74A8AB3ACD1E /* OHHTTPStubs.h in Headers */ = {isa = PBXBuildFile; fileRef = B1C6FAA1528BDBBE08A51185D6298249 /* OHHTTPStubs.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		929644D01D7952939A64447827EBA50A /* OHHTTPStubs-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 10133BDBF11EEE1553FF105E05FC3F27 /* OHHTTPStubs-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A26807A637DDDBEC6257D8EC0491CDE7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC4DC3D8EFEFCB57DD743BA66A83A5F6 /* Foundation.framework */; };
+		A4C98C4977010CA8B8ED2E92B2409B13 /* Pods-ThoughtTunesUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF09BA195ABEA2D331FDC5D3DB60967 /* Pods-ThoughtTunesUITests-dummy.m */; };
 		B4C3CEF514768ED8E7AA73EE887F9D62 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC4DC3D8EFEFCB57DD743BA66A83A5F6 /* Foundation.framework */; };
 		B8627D6566F2824244EC8E30650BCF42 /* OHPathHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = D967CF330D91893258E87BA178977873 /* OHPathHelpers.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		BAAA1B65B385F93B760CCF5C29B9D2ED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC4DC3D8EFEFCB57DD743BA66A83A5F6 /* Foundation.framework */; };
@@ -30,17 +31,9 @@
 		E55A2EEF04662CB1628DA5754F2A4157 /* Compatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 66971DD4D1A7C8D2613D1DD77FC7220B /* Compatibility.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EB2B3486C424283C026551BF6939A50A /* OHHTTPStubsResponse+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E1740A1BA2A3E05B06F67D849FA1CD /* OHHTTPStubsResponse+JSON.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		F6E08E3ECF05C74C078724791DB78883 /* OHHTTPStubs-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF0AEA9A5C693CCF8EDCB0D81CC0862 /* OHHTTPStubs-dummy.m */; };
-		FE9ECDC3D734245A4E21F03A3F2B11FB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC4DC3D8EFEFCB57DD743BA66A83A5F6 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		149203717FE7F373295C2C8F58D8E993 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 65068B06081E7C3728E201FD9DED25E5;
-			remoteInfo = OHHTTPStubs;
-		};
 		4B7A41C82BF7E127742B1361FFAAAF78 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
@@ -123,20 +116,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1C2A3A0F3AFD5734AC6A84AC6DC5A163 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07D002DF4E185BE5A7074F10A742E1BD /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		56F661CE286952FB71B51618A1CF7797 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				474F70E92CD8526D8D73EC83C2F42D1A /* CFNetwork.framework in Frameworks */,
 				A26807A637DDDBEC6257D8EC0491CDE7 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EA0267C30A4986DB30B8094743906A42 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FE9ECDC3D734245A4E21F03A3F2B11FB /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,14 +331,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		1D39BAAE161A79DB82968E83A4110768 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4963DC31B0B27B5F84D26CBAF8FBD4A0 /* Pods-ThoughtTunesUITests-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7A22D0DA84CBEBDE5237056528071993 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -356,6 +341,14 @@
 				7295F4E873343EADA45624FBE94D2F74 /* OHHTTPStubsResponse+JSON.h in Headers */,
 				70E45A9870C463BDEFD7019F5FF32D03 /* OHHTTPStubsResponse.h in Headers */,
 				1D96A9E78787F23E00744EFA36F9BE4B /* OHPathHelpers.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A56782C5BA29F1435A0391A7BBDAEEE6 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60BA92DD404134E9EC0477DE2EB0D217 /* Pods-ThoughtTunesUITests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +371,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		0354A64A37229C1C420B75C22C291B65 /* Pods-ThoughtTunesUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49D905D30D99093DAA41D130F7DC964D /* Build configuration list for PBXNativeTarget "Pods-ThoughtTunesUITests" */;
+			buildPhases = (
+				5ED348A7A37D24645C991619505ADAF0 /* Sources */,
+				1C2A3A0F3AFD5734AC6A84AC6DC5A163 /* Frameworks */,
+				A56782C5BA29F1435A0391A7BBDAEEE6 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-ThoughtTunesUITests";
+			productName = "Pods-ThoughtTunesUITests";
+			productReference = AF40FC7BD088B7FA65A0D2193B204B46 /* Pods_ThoughtTunesUITests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		65068B06081E7C3728E201FD9DED25E5 /* OHHTTPStubs */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 38D76E32C9FC59C27FA720DE3F3F24BC /* Build configuration list for PBXNativeTarget "OHHTTPStubs" */;
@@ -431,24 +441,6 @@
 			productReference = F545D96D9495A1A845286C632502F1AB /* Pods_ThoughtTunes.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		CD3C7C6492254F2FCB7B329AFCD3EAF3 /* Pods-ThoughtTunesUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D4BC52FD677F29AE7E88FA137D452F95 /* Build configuration list for PBXNativeTarget "Pods-ThoughtTunesUITests" */;
-			buildPhases = (
-				8DE5CDA22F426C5B62278095604F1CE5 /* Sources */,
-				EA0267C30A4986DB30B8094743906A42 /* Frameworks */,
-				1D39BAAE161A79DB82968E83A4110768 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				519129111B5D2D0176CC7429C21C7CF1 /* PBXTargetDependency */,
-			);
-			name = "Pods-ThoughtTunesUITests";
-			productName = "Pods-ThoughtTunesUITests";
-			productReference = AF40FC7BD088B7FA65A0D2193B204B46 /* Pods_ThoughtTunesUITests.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -473,17 +465,17 @@
 				65068B06081E7C3728E201FD9DED25E5 /* OHHTTPStubs */,
 				CCB3AA4EC5E642E2EEAEF6EFBB19B629 /* Pods-ThoughtTunes */,
 				94A1B9F970724E7D802EEB30446BD014 /* Pods-ThoughtTunesTests */,
-				CD3C7C6492254F2FCB7B329AFCD3EAF3 /* Pods-ThoughtTunesUITests */,
+				0354A64A37229C1C420B75C22C291B65 /* Pods-ThoughtTunesUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		8DE5CDA22F426C5B62278095604F1CE5 /* Sources */ = {
+		5ED348A7A37D24645C991619505ADAF0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5A1EC279BD4BAA9932744F697F125976 /* Pods-ThoughtTunesUITests-dummy.m in Sources */,
+				A4C98C4977010CA8B8ED2E92B2409B13 /* Pods-ThoughtTunesUITests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,12 +512,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		519129111B5D2D0176CC7429C21C7CF1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = OHHTTPStubs;
-			target = 65068B06081E7C3728E201FD9DED25E5 /* OHHTTPStubs */;
-			targetProxy = 149203717FE7F373295C2C8F58D8E993 /* PBXContainerItemProxy */;
-		};
 		5FA8DEA2A99FC1934BC0E3B2319A41E7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = OHHTTPStubs;
@@ -666,6 +652,39 @@
 			};
 			name = Release;
 		};
+		35656FA924E9A2B934CD55BEA8FDD93F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E47E43A474EBE1D93BCA753D6A63753 /* Pods-ThoughtTunesUITests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-ThoughtTunesUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ThoughtTunesUITests/Pods-ThoughtTunesUITests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_ThoughtTunesUITests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		3FA451D268613890FA8A5A03801E11D5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -746,40 +765,6 @@
 			};
 			name = Debug;
 		};
-		8FC2E7FDCABB2849226A57CE91AB4561 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 621032BFFDF8560F1B170B5B15EDB260 /* Pods-ThoughtTunesUITests.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-ThoughtTunesUITests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-ThoughtTunesUITests/Pods-ThoughtTunesUITests.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_ThoughtTunesUITests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		BB590573BDC96D421FDC04C6863D7D7E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FF43F90C3F23CA466B84659E82632624 /* Pods-ThoughtTunes.debug.xcconfig */;
@@ -814,13 +799,13 @@
 			};
 			name = Debug;
 		};
-		E2A3EDEE0E29618379CBD629AEEE81B1 /* Release */ = {
+		CA35B8A9FA1C0F6521A8E4D62B0676D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6E47E43A474EBE1D93BCA753D6A63753 /* Pods-ThoughtTunesUITests.release.xcconfig */;
+			baseConfigurationReference = 621032BFFDF8560F1B170B5B15EDB260 /* Pods-ThoughtTunesUITests.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -833,7 +818,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-ThoughtTunesUITests/Pods-ThoughtTunesUITests.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -845,7 +830,7 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
 		F6BE9CD2C7C82A25617FA11906893751 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -911,20 +896,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		49D905D30D99093DAA41D130F7DC964D /* Build configuration list for PBXNativeTarget "Pods-ThoughtTunesUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CA35B8A9FA1C0F6521A8E4D62B0676D1 /* Debug */,
+				35656FA924E9A2B934CD55BEA8FDD93F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A52E25FB3D48ECA0A9C7AA287A47A002 /* Build configuration list for PBXNativeTarget "Pods-ThoughtTunes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BB590573BDC96D421FDC04C6863D7D7E /* Debug */,
 				130F824E6273FCD6C81A3352754897D0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D4BC52FD677F29AE7E88FA137D452F95 /* Build configuration list for PBXNativeTarget "Pods-ThoughtTunesUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8FC2E7FDCABB2849226A57CE91AB4561 /* Debug */,
-				E2A3EDEE0E29618379CBD629AEEE81B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

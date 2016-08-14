@@ -43,6 +43,9 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="6ar-iX-Akk" secondAttribute="bottom" id="tYs-1w-f1j"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <accessibility key="accessibilityConfiguration" label="Tag Cell">
+                                            <bool key="isElement" value="YES"/>
+                                        </accessibility>
                                         <connections>
                                             <outlet property="tagName" destination="6ar-iX-Akk" id="dl9-1h-fax"/>
                                         </connections>

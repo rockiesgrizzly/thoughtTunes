@@ -17,8 +17,8 @@ target 'ThoughtTunes' do
 
   target 'ThoughtTunesUITests' do
     inherit! :search_paths
-    pod 'OHHTTPStubs'
-    pod 'OHHTTPStubs/Swift'
+
+
   end
 
 end
