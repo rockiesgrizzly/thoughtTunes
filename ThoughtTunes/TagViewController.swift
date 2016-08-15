@@ -16,6 +16,8 @@ class TagViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     var dataHandler: LocalDataHandler? = LocalDataHandler()
     
     @IBOutlet var tagTableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     var refreshControl = UIRefreshControl()
     var localNotifier = NSNotificationCenter.defaultCenter()
     let privateQueue = dispatch_queue_create("com.floydhillcode.queue", DISPATCH_QUEUE_CONCURRENT)
@@ -29,6 +31,8 @@ class TagViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         refreshControl.attributedTitle = NSAttributedString(string: CustomerFacingText.refreshControl)
         refreshControl.addTarget(self, action: #selector(updateData), forControlEvents: .ValueChanged)
         tagTableView.addSubview(refreshControl)
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
     }
     
     
@@ -67,6 +71,7 @@ class TagViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             if let dataList = self.dataHandler?.tagDataList {
                 dispatch_async(dispatch_get_main_queue()) {
                     cell.tagName.text = dataList[indexPath.row].title
+                    self.activityIndicator.stopAnimating()
                 }
             }
         }

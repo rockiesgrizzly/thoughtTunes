@@ -26,10 +26,10 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="114"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uWz-fE-QJT" id="VJy-E6-P3x">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="113.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="113"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iEf-fL-Rc1">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Category" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iEf-fL-Rc1">
                                                     <rect key="frame" x="16" y="8" width="296" height="98"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -56,11 +56,16 @@
                                     <outlet property="delegate" destination="1Pn-kg-HlK" id="lJ9-u3-eWD"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="sEd-sD-p2S">
+                                <rect key="frame" x="150" y="306" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="sEd-sD-p2S" firstAttribute="centerX" secondItem="eOz-W7-c6u" secondAttribute="centerX" id="91U-ox-3vu"/>
                             <constraint firstAttribute="trailing" secondItem="eOz-W7-c6u" secondAttribute="trailing" id="PiN-jn-LeW"/>
                             <constraint firstItem="tCn-OX-OBE" firstAttribute="top" secondItem="eOz-W7-c6u" secondAttribute="bottom" id="Zqe-1e-KhN"/>
+                            <constraint firstItem="sEd-sD-p2S" firstAttribute="centerY" secondItem="eOz-W7-c6u" secondAttribute="centerY" id="pMs-pT-d5l"/>
                             <constraint firstItem="eOz-W7-c6u" firstAttribute="top" secondItem="Byp-Jl-1FG" secondAttribute="bottom" id="s8M-KF-Ztf"/>
                             <constraint firstItem="eOz-W7-c6u" firstAttribute="leading" secondItem="ffF-Af-BKB" secondAttribute="leading" id="ynQ-6u-BIR"/>
                         </constraints>
@@ -68,6 +73,7 @@
                     <navigationItem key="navigationItem" title="Categories" id="bUD-Qv-9uV"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="sEd-sD-p2S" id="krZ-cs-Xcl"/>
                         <outlet property="catTableView" destination="eOz-W7-c6u" id="QYq-n7-4xJ"/>
                     </connections>
                 </viewController>

@@ -14,6 +14,8 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     var dataHandler: LocalDataHandler? = LocalDataHandler()
     
     @IBOutlet var catTableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     internal var tagChosen: TagType?
     var refreshControl = UIRefreshControl()
     var localNotifier = NSNotificationCenter.defaultCenter()
@@ -29,6 +31,8 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         refreshControl.attributedTitle = NSAttributedString(string: CustomerFacingText.refreshControl)
         refreshControl.addTarget(self, action: #selector(updateDataFromTagType), forControlEvents: .ValueChanged)
         catTableView.addSubview(refreshControl)
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
     }
     
     
@@ -61,6 +65,7 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
             if let dataList = self.dataHandler?.categoryDataList {
                 dispatch_async(dispatch_get_main_queue()) {
                     cell.categoryName.text = dataList[indexPath.row].name
+                    self.activityIndicator.stopAnimating()
                 }
             }
         }

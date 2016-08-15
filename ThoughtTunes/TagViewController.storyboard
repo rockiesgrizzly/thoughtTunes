@@ -26,10 +26,10 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="86"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Kq-kP-yCc" id="5Ap-zs-cpL">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="85.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ar-iX-Akk">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ar-iX-Akk">
                                                     <rect key="frame" x="16" y="8" width="296" height="70"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -56,11 +56,16 @@
                                     <outlet property="delegate" destination="NkX-Bi-G18" id="jjJ-Qz-spT"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="uhT-cq-NVH">
+                                <rect key="frame" x="150" y="274" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="lhr-MG-Yeb" secondAttribute="trailing" id="FC2-Q3-C4y"/>
+                            <constraint firstItem="uhT-cq-NVH" firstAttribute="centerX" secondItem="x97-3a-5Wt" secondAttribute="centerX" id="G7n-OR-x6B"/>
                             <constraint firstItem="lhr-MG-Yeb" firstAttribute="leading" secondItem="x97-3a-5Wt" secondAttribute="leading" id="OOc-Hm-RT7"/>
+                            <constraint firstItem="uhT-cq-NVH" firstAttribute="centerY" secondItem="x97-3a-5Wt" secondAttribute="centerY" id="XmX-jd-pUf"/>
                             <constraint firstItem="J0P-5L-hHB" firstAttribute="top" secondItem="lhr-MG-Yeb" secondAttribute="bottom" id="aEa-U4-Kz2"/>
                             <constraint firstItem="lhr-MG-Yeb" firstAttribute="top" secondItem="bah-do-XmT" secondAttribute="bottom" id="nk7-Ck-B9q"/>
                         </constraints>
@@ -68,6 +73,7 @@
                     <navigationItem key="navigationItem" title="Tags" id="VKA-u8-OIx"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="uhT-cq-NVH" id="E5V-L8-ihj"/>
                         <outlet property="tagTableView" destination="lhr-MG-Yeb" id="JBx-gU-3tV"/>
                     </connections>
                 </viewController>

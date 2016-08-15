@@ -14,6 +14,8 @@ class TuneViewController: UIViewController, UITableViewDelegate, UITableViewData
     var dataHandler: LocalDataHandler? = LocalDataHandler()
     
     @IBOutlet var tuneTableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     var refreshControl = UIRefreshControl()
     internal var tuneIDQueries: String?
     var localNotifier = NSNotificationCenter.defaultCenter()
@@ -30,6 +32,8 @@ class TuneViewController: UIViewController, UITableViewDelegate, UITableViewData
         refreshControl.attributedTitle = NSAttributedString(string: CustomerFacingText.refreshControl)
         refreshControl.addTarget(self, action: #selector(updateDataFromTuneIDQueries), forControlEvents: .ValueChanged)
         tuneTableView.addSubview(refreshControl)
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
     }
     
     
@@ -64,17 +68,20 @@ class TuneViewController: UIViewController, UITableViewDelegate, UITableViewData
                 dispatch_async(dispatch_get_main_queue()) {
                     cell.tuneName.text = dataList[indexPath.row].name
                     cell.tuneDescription.text = dataList[indexPath.row].tuneDescription
+                    self.activityIndicator.stopAnimating()
                 }
                 
                 if let typeFromDataList = dataList[indexPath.row].type {
                     dispatch_async(dispatch_get_main_queue()) {
                         cell.tuneType.text = CellTextPrefixes.type + typeFromDataList
+                        self.activityIndicator.stopAnimating()
                     }
                 }
                 
                 if let idFromDataList = dataList[indexPath.row].id{
                     dispatch_async(dispatch_get_main_queue()) {
                         cell.tuneID.text = CellTextPrefixes.songID + idFromDataList
+                        self.activityIndicator.stopAnimating()
                     }
                 }
                 
@@ -84,6 +91,7 @@ class TuneViewController: UIViewController, UITableViewDelegate, UITableViewData
                     {
                         dispatch_async(dispatch_get_main_queue()) {
                             cell.tuneArtImage.image = UIImage(data: data)
+                            self.activityIndicator.stopAnimating()
                         }
                     }
                 }
