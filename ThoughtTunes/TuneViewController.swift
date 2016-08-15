@@ -28,6 +28,7 @@ class TuneViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         tuneTableView.estimatedRowHeight = 500
         tuneTableView.rowHeight = UITableViewAutomaticDimension
+        tuneTableView.layoutIfNeeded()
         
         refreshControl.attributedTitle = NSAttributedString(string: CustomerFacingText.refreshControl)
         refreshControl.addTarget(self, action: #selector(updateDataFromTuneIDQueries), forControlEvents: .ValueChanged)
