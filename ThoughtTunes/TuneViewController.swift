@@ -21,6 +21,7 @@ class TuneViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     //MARK: Lifecycle
     override func viewDidLoad() {
+        super.viewDidLoad()
         updateDataFromTuneIDQueries()
         
         tuneTableView.estimatedRowHeight = 500
@@ -33,6 +34,7 @@ class TuneViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         localNotifier.addObserver(self, selector: #selector(reloadTableView), name: Notifications.tuneDataListSet, object: dataHandler)
     }
     
