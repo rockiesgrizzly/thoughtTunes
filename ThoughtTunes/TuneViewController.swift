@@ -17,7 +17,7 @@ class TuneViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var refreshControl = UIRefreshControl()
-    internal var tuneIDQueries: String?
+    var tuneIDQueries: String?
     var localNotifier = NSNotificationCenter.defaultCenter()
     
     
@@ -26,7 +26,7 @@ class TuneViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         updateDataFromTuneIDQueries()
         
-        tuneTableView.estimatedRowHeight = 500
+       tuneTableView.estimatedRowHeight = 500
         tuneTableView.rowHeight = UITableViewAutomaticDimension
         tuneTableView.layoutIfNeeded()
         
@@ -61,38 +61,32 @@ class TuneViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let privateQueue = dispatch_queue_create("com.floydhillcode.queue", DISPATCH_QUEUE_CONCURRENT)
         let cell = tableView.dequeueReusableCellWithIdentifier(VCCellNames.tuneCell, forIndexPath: indexPath) as! TuneCell
         
         if let dataList = dataHandler?.tuneDataList {
-            dispatch_async(privateQueue) {
-                dispatch_async(dispatch_get_main_queue()) {
-                    cell.tuneName.text = dataList[indexPath.row].name
-                    cell.tuneDescription.text = dataList[indexPath.row].tuneDescription
-                    self.activityIndicator.stopAnimating()
-                }
+            
+            cell.tuneName.text = dataList[indexPath.row].name
+            cell.tuneDescription.text = dataList[indexPath.row].tuneDescription
+            activityIndicator.stopAnimating()
+            
+            
+            if let typeFromDataList = dataList[indexPath.row].type {
+                cell.tuneType.text = CellTextPrefixes.type + typeFromDataList
+            }
+            
+            if let idFromDataList = dataList[indexPath.row].id{
+                cell.tuneID.text = CellTextPrefixes.songID + idFromDataList
+            }
+            
+            if let coverUrlString = dataList[indexPath.row].cover_url {
+                let privateQueue = dispatch_queue_create("com.floydhillcode.queue", DISPATCH_QUEUE_CONCURRENT)
                 
-                if let typeFromDataList = dataList[indexPath.row].type {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        cell.tuneType.text = CellTextPrefixes.type + typeFromDataList
-                        self.activityIndicator.stopAnimating()
-                    }
-                }
-                
-                if let idFromDataList = dataList[indexPath.row].id{
-                    dispatch_async(dispatch_get_main_queue()) {
-                        cell.tuneID.text = CellTextPrefixes.songID + idFromDataList
-                        self.activityIndicator.stopAnimating()
-                    }
-                }
-                
-                if let coverUrlString = dataList[indexPath.row].cover_url {
+                dispatch_async(privateQueue) {
                     if let url  = NSURL(string: coverUrlString),
                         data = NSData(contentsOfURL: url)
                     {
                         dispatch_async(dispatch_get_main_queue()) {
                             cell.tuneArtImage.image = UIImage(data: data)
-                            self.activityIndicator.stopAnimating()
                         }
                     }
                 }

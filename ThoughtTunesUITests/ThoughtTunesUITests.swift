@@ -78,8 +78,6 @@ class ThoughtTunesUITests: XCTestCase {
         XCTAssert(tablesQuery.staticTexts["Rap"].exists)
         tablesQuery.staticTexts["Rap"].tap()
         XCTAssert(tablesQuery.cells.containingType(.StaticText, identifier:"These Walls").element.exists)
-        
-        XCUIDevice.sharedDevice().orientation = .FaceUp
     }
     
 }

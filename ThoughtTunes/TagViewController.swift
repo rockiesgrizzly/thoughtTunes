@@ -20,7 +20,6 @@ class TagViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     var refreshControl = UIRefreshControl()
     var localNotifier = NSNotificationCenter.defaultCenter()
-    let privateQueue = dispatch_queue_create("com.floydhillcode.queue", DISPATCH_QUEUE_CONCURRENT)
     
     
     //MARK: Lifecycle
@@ -67,13 +66,8 @@ class TagViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(VCCellNames.tagCell, forIndexPath: indexPath) as! TagCell
         
-        dispatch_async(privateQueue) {
-            if let dataList = self.dataHandler?.tagDataList {
-                dispatch_async(dispatch_get_main_queue()) {
-                    cell.tagName.text = dataList[indexPath.row].title
-                    self.activityIndicator.stopAnimating()
-                }
-            }
+        if let dataList = dataHandler?.tagDataList {
+            cell.tagName.text = dataList[indexPath.row].title
         }
         
         return cell
@@ -88,20 +82,15 @@ class TagViewController: UIViewController, UITableViewDelegate, UITableViewDataS
             if let vc = storyboard.instantiateViewControllerWithIdentifier(VCNames.categoryViewController) as? CategoryViewController {
                 let tagTitle = dataList[indexPath.row].title
                 
-                dispatch_async(dispatch_get_main_queue()) {
-                    if tagTitle == TagType.Artists.rawValue {
-                        vc.tagChosen = TagType.Artists
-                    } else if tagTitle == TagType.Albums.rawValue {
-                        vc.tagChosen = TagType.Albums
-                    } else if tagTitle == TagType.Genre.rawValue {
-                        vc.tagChosen = TagType.Genre
-                        
-                    }
-                    
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.showViewController(vc, sender: self)
-                    }
+                if tagTitle == TagType.Artists.rawValue {
+                    vc.tagChosen = TagType.Artists
+                } else if tagTitle == TagType.Albums.rawValue {
+                    vc.tagChosen = TagType.Albums
+                } else if tagTitle == TagType.Genre.rawValue {
+                    vc.tagChosen = TagType.Genre
                 }
+                
+                showViewController(vc, sender: self)
             }
         }
     }
@@ -113,7 +102,8 @@ class TagViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     
     func reloadTableView() {
-        self.tagTableView.reloadData()
+        activityIndicator.stopAnimating()
+        tagTableView.reloadData()
         refreshControl.endRefreshing()
     }
     

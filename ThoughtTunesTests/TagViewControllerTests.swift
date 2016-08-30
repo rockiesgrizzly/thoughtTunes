@@ -57,16 +57,6 @@ class TagViewControllerTests: XCTestCase {
         let tableView = viewController.tagTableView
         XCTAssertNotNil(tableView)
     }
-    
-//    //TODO: resolve cell returning as nil here though not nil in tableView itself
-//    func testTableView_CellForRow_ProducesCell() {
-//        let tableView = viewController.tagTableView
-//        tableView.reloadData()
-//        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-//        let cell = tableView.cellForRowAtIndexPath(indexPath)
-//        XCTAssertNotNil(cell)
-//    }
-    
 
 
 }

@@ -16,10 +16,9 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet var catTableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    internal var tagChosen: TagType?
+    var tagChosen: TagType?
     var refreshControl = UIRefreshControl()
     var localNotifier = NSNotificationCenter.defaultCenter()
-    let privateQueue = dispatch_queue_create("com.floydhillcode.queue", DISPATCH_QUEUE_CONCURRENT)
     
     
     //MARK: Lifecycle
@@ -28,6 +27,7 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         
         updateDataFromTagType()
         
+        //TODO: set up refresh elsewhere
         refreshControl.attributedTitle = NSAttributedString(string: CustomerFacingText.refreshControl)
         refreshControl.addTarget(self, action: #selector(updateDataFromTagType), forControlEvents: .ValueChanged)
         catTableView.addSubview(refreshControl)
@@ -61,13 +61,9 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(VCCellNames.categoryCell, forIndexPath: indexPath) as! CategoryCell
         
-        dispatch_async(privateQueue) {
-            if let dataList = self.dataHandler?.categoryDataList {
-                dispatch_async(dispatch_get_main_queue()) {
-                    cell.categoryName.text = dataList[indexPath.row].name
-                    self.activityIndicator.stopAnimating()
-                }
-            }
+        if let dataList = dataHandler?.categoryDataList {
+            cell.categoryName.text = dataList[indexPath.row].name
+            activityIndicator.stopAnimating()
         }
         return cell
     }
@@ -84,14 +80,10 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
             let storyboard = UIStoryboard(name: VCNames.tuneViewController, bundle: nil)
             
             if let vc = storyboard.instantiateViewControllerWithIdentifier(VCNames.tuneViewController) as? TuneViewController {
-                dispatch_async(privateQueue) {
-                    let tuneIDs = dataList[indexPath.row].song_ids
-                    
-                    dispatch_async(dispatch_get_main_queue()) {
-                        vc.tuneIDQueries = tuneIDs
-                        self.showViewController(vc, sender: self)
-                    }
-                }
+                let tuneIDs = dataList[indexPath.row].song_ids
+                
+                vc.tuneIDQueries = tuneIDs
+                showViewController(vc, sender: self)
             }
         }
     }
@@ -117,7 +109,7 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     func reloadTableView() {
-        self.catTableView.reloadData()
+        catTableView.reloadData()
         refreshControl.endRefreshing()
     }
     

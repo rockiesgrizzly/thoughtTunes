@@ -11,19 +11,19 @@ import CoreData
 class DataHandler {
     var localNotifier = NSNotificationCenter.defaultCenter()
     
-    internal var tagDataList: [Tag]? {
+    var tagDataList: [Tag]? {
         didSet {
             localNotifier.postNotificationName(Notifications.tagDataListSet, object: self)
         }
     }
     
-    internal var categoryDataList: [Category]? {
+    var categoryDataList: [Category]? {
         didSet {
             localNotifier.postNotificationName(Notifications.categoryDataListSet, object: self)
         }
     }
     
-    internal var tuneDataList: [Tune]? {
+    var tuneDataList: [Tune]? {
         didSet {
             localNotifier.postNotificationName(Notifications.tuneDataListSet, object: self)
         }
