@@ -9,35 +9,35 @@ import UIKit
 import CoreData
 
 class LocalDataHandler {
-    var localNotifier = NSNotificationCenter.defaultCenter()
+    var localNotifier = NotificationCenter.default
     
     var tagDataList: [Tag]? {
         didSet {
-            localNotifier.postNotificationName(Notifications.tagDataListSet, object: self)
+            localNotifier.post(name: NSNotification.Name(rawValue: Notifications.tagDataListSet), object: self)
         }
     }
     
     var categoryDataList: [Category]? {
         didSet {
-            localNotifier.postNotificationName(Notifications.categoryDataListSet, object: self)
+            localNotifier.post(name: NSNotification.Name(rawValue: Notifications.categoryDataListSet), object: self)
         }
     }
     
     var tuneDataList: [Tune]? {
         didSet {
-            localNotifier.postNotificationName(Notifications.tuneDataListSet, object: self)
+            localNotifier.post(name: NSNotification.Name(rawValue: Notifications.tuneDataListSet), object: self)
         }
     }
     
     lazy var privateMoc: NSManagedObjectContext? = {
-        guard let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate else {return nil}
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return nil}
         return appDelegate.managedObjectContext
     }()
     
     lazy var mainMoc: NSManagedObjectContext? = {
-        let moc = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        let moc = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         moc.mergePolicy = NSOverwriteMergePolicy
-        moc.parentContext = self.privateMoc
+        moc.parent = self.privateMoc
         return moc
     }()
     
@@ -67,7 +67,7 @@ class LocalDataHandler {
         case .Tune:
             if let tuneQueryString = ifTuneThenQueryString {
                 
-                let transformedQueryString = transformQueryString(tuneQueryString)
+                let transformedQueryString = transformQueryString(queryString: tuneQueryString)
                 urlString = URLs.localTuneURL + URLs.idPrefix + transformedQueryString
                 
             } else {
@@ -76,26 +76,27 @@ class LocalDataHandler {
             }
         }
         
-        if let url = NSBundle.mainBundle().URLForResource(urlString, withExtension: "json") {
+        if let url = Bundle.main.url(forResource: urlString, withExtension: "json") {
            // NSLog("url: \(url)")
             
             do {
-                let data = try NSData(contentsOfURL: url, options: .DataReadingMappedIfSafe)
+                let data = try NSData(contentsOf: url, options: .mappedIfSafe)
                 
                 do {
-                    guard let jsonArray = try NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves) as? [AnyObject] else {return}
+                    guard let jsonArray = try JSONSerialization.jsonObject(with: data as Data, options: .mutableLeaves)
+                        as? [AnyObject] else {return}
                     
                     NSLog("jsonArray: \(jsonArray)")
                     guard let privateMoc = self.privateMoc else {return}
                     
-                    privateMoc.performBlock ({
+                    privateMoc.perform ({
                         switch modelType {
                         case .Tag:
                             //remove existing values from CoreData since we are resetting the list
-                            self.clearCoreDataEntity(ModelType.Tag)
+                            self.clearCoreDataEntity(name: ModelType.Tag)
                             
                             for element in jsonArray {
-                                let tag = NSEntityDescription.insertNewObjectForEntityForName(ModelType.Tag.rawValue, inManagedObjectContext: privateMoc) as! Tag
+                                let tag = NSEntityDescription.insertNewObject(forEntityName: ModelType.Tag.rawValue, into: privateMoc) as! Tag
                                 
                                 guard let id = element["id"] as? String else {return}
                                 guard let title = element["title"] as? String else {return}
@@ -104,10 +105,10 @@ class LocalDataHandler {
                                 tag.title = title
                             }
                         case .Category:
-                            self.clearCoreDataEntity(ModelType.Category)
+                            self.clearCoreDataEntity(name: ModelType.Category)
                             
                             for element in jsonArray {
-                                let category = NSEntityDescription.insertNewObjectForEntityForName(ModelType.Category.rawValue, inManagedObjectContext: privateMoc) as! Category
+                                let category = NSEntityDescription.insertNewObject(forEntityName: ModelType.Category.rawValue, into: privateMoc) as! Category
                                 
                                 guard let name = element["name"] as? String else {return}
                                 guard let id = element["id"] as? String else {return}
@@ -120,10 +121,10 @@ class LocalDataHandler {
                             }
                             
                         case .Tune:
-                            self.clearCoreDataEntity(ModelType.Tune)
+                            self.clearCoreDataEntity(name: ModelType.Tune)
                             
                             for element in jsonArray {
-                                let tune = NSEntityDescription.insertNewObjectForEntityForName(ModelType.Tune.rawValue, inManagedObjectContext: privateMoc) as! Tune
+                                let tune = NSEntityDescription.insertNewObject(forEntityName: ModelType.Tune.rawValue, into: privateMoc) as! Tune
                                 
                                 guard let cover_url = element["cover_url"] as? String else {return}
                                 guard let tuneDescription = element["description"] as? String else {return}
@@ -145,8 +146,8 @@ class LocalDataHandler {
                         
                         do {
                             try privateMoc.save()
-                            self.mainMoc?.performBlock({
-                                self.fetchData(modelType)
+                            self.mainMoc?.perform({
+                                self.fetchData(modelType: modelType)
                             })
                         }
                             
@@ -168,9 +169,9 @@ class LocalDataHandler {
 
     func fetchData(modelType: ModelType) {
         guard let moc = mainMoc else {return}
-        let fetchRequest = NSFetchRequest()
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
         
-        let entity = NSEntityDescription.entityForName(modelType.rawValue, inManagedObjectContext: moc)
+        let entity = NSEntityDescription.entity(forEntityName: modelType.rawValue, in: moc)
         fetchRequest.entity = entity
         
         switch modelType {
@@ -179,7 +180,7 @@ class LocalDataHandler {
             fetchRequest.sortDescriptors = [sortDescriptor]
             
             do {
-                let results = try moc.executeFetchRequest(fetchRequest) as! [Tag]
+                let results = try moc.fetch(fetchRequest) as! [Tag]
                 tagDataList = results
             } catch let error as NSError {
                 NSLog("error: \(error), \(error.localizedDescription)")
@@ -190,7 +191,7 @@ class LocalDataHandler {
             fetchRequest.sortDescriptors = [sortDescriptor]
             
             do {
-                let results = try moc.executeFetchRequest(fetchRequest) as! [Category]
+                let results = try moc.fetch(fetchRequest) as! [Category]
                 categoryDataList = results
             } catch let error as NSError {
                 NSLog("error: \(error), \(error.localizedDescription)")
@@ -201,7 +202,7 @@ class LocalDataHandler {
             fetchRequest.sortDescriptors = [sortDescriptor]
             
             do {
-                let results = try moc.executeFetchRequest(fetchRequest) as! [Tune]
+                let results = try moc.fetch(fetchRequest) as! [Tune]
                 tuneDataList = results
             } catch let error as NSError {
                 NSLog("error: \(error), \(error.localizedDescription)")
@@ -212,13 +213,13 @@ class LocalDataHandler {
     
     func clearCoreDataEntity(name: ModelType) {
         guard let privateMoc = self.privateMoc else {return}
-        let entity = NSEntityDescription.entityForName(name.rawValue, inManagedObjectContext: privateMoc)
-        let fetchRequest = NSFetchRequest()
+        let entity = NSEntityDescription.entity(forEntityName: name.rawValue, in: privateMoc)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
         fetchRequest.entity = entity
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         
         do {
-            try self.mainMoc?.executeRequest(deleteRequest)
+            try self.mainMoc?.execute(deleteRequest)
         }
         catch let error as NSError {
             NSLog("error: \(error), \(error.localizedDescription)")
@@ -227,6 +228,8 @@ class LocalDataHandler {
     
     
     func transformQueryString(queryString: String) -> String {
-        return queryString.stringByReplacingOccurrencesOfString("[", withString: "").stringByReplacingOccurrencesOfString("]", withString: "").stringByReplacingOccurrencesOfString(", ", withString: "&id=")
+        return queryString.replacingOccurrences(of: "[", with: "")
+            .replacingOccurrences(of: "]", with: "")
+            .replacingOccurrences(of: ", ", with: "&id=")
     }    
 }

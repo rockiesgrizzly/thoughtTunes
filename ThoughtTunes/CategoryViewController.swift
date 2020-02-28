@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CategoryViewController: UIViewController {
     
     //TODO: for local data, use LocalDataHandler(); for external url, use DataHandler()
     var dataHandler: LocalDataHandler? = LocalDataHandler()
@@ -18,7 +18,7 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     
     var tagChosen: TagType?
     var refreshControl = UIRefreshControl()
-    var localNotifier = NSNotificationCenter.defaultCenter()
+    var localNotifier = NotificationCenter.default
     
     
     //MARK: Lifecycle
@@ -29,17 +29,20 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         
         //TODO: set up refresh elsewhere
         refreshControl.attributedTitle = NSAttributedString(string: CustomerFacingText.refreshControl)
-        refreshControl.addTarget(self, action: #selector(updateDataFromTagType), forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(updateDataFromTagType), for: .valueChanged)
         catTableView.addSubview(refreshControl)
         activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()
     }
     
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        localNotifier.addObserver(self, selector: #selector(reloadTableView), name: Notifications.categoryDataListSet, object: dataHandler)
+        localNotifier.addObserver(self,
+                                  selector: #selector(reloadTableView),
+                                  name: NSNotification.Name(rawValue: Notifications.categoryDataListSet),
+                                  object: dataHandler)
     }
     
     
@@ -47,57 +50,15 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         localNotifier.removeObserver(self)
     }
     
-    
-    //MARK: TableView Handling
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let dataList = dataHandler?.categoryDataList {
-            return dataList.count
-        } else {
-            return 0
-        }
-    }
-    
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(VCCellNames.categoryCell, forIndexPath: indexPath) as! CategoryCell
-        
-        if let dataList = dataHandler?.categoryDataList {
-            cell.categoryName.text = dataList[indexPath.row].name
-            activityIndicator.stopAnimating()
-        }
-        return cell
-    }
-    
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let dataList = dataHandler?.categoryDataList {
-            
-            let storyboard = UIStoryboard(name: VCNames.tuneViewController, bundle: nil)
-            
-            if let vc = storyboard.instantiateViewControllerWithIdentifier(VCNames.tuneViewController) as? TuneViewController {
-                let tuneIDs = dataList[indexPath.row].song_ids
-                
-                vc.tuneIDQueries = tuneIDs
-                showViewController(vc, sender: self)
-            }
-        }
-    }
-    
-    
-    func updateDataFromTagType() {
+    @objc func updateDataFromTagType() {
         if let tagChosen = tagChosen {
             switch tagChosen {
             case .Artists:
-                dataHandler?.updateData(.Category, ifCategoryThenTagType: .Artists, ifTuneThenQueryString:  nil)
+                dataHandler?.updateData(modelType: .Category, ifCategoryThenTagType: .Artists, ifTuneThenQueryString:  nil)
             case .Albums:
-                dataHandler?.updateData(.Category, ifCategoryThenTagType: .Albums, ifTuneThenQueryString: nil)
+                dataHandler?.updateData(modelType: .Category, ifCategoryThenTagType: .Albums, ifTuneThenQueryString: nil)
             case .Genre:
-                dataHandler?.updateData(.Category, ifCategoryThenTagType: .Genre, ifTuneThenQueryString: nil)
+                dataHandler?.updateData(modelType: .Category, ifCategoryThenTagType: .Genre, ifTuneThenQueryString: nil)
             }
         }
     }
@@ -108,12 +69,49 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
-    func reloadTableView() {
+    @objc func reloadTableView() {
         catTableView.reloadData()
         refreshControl.endRefreshing()
     }
     
+}
+
+extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: VCCellNames.categoryCell, for: indexPath as IndexPath) as! CategoryCell
+        
+        if let dataList = dataHandler?.categoryDataList {
+            cell.categoryName.text = dataList[indexPath.row].name
+            activityIndicator.stopAnimating()
+        }
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let dataList = dataHandler?.categoryDataList {
+            return dataList.count
+        } else {
+            return 0
+        }
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
     
     
+    private func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if let dataList = dataHandler?.categoryDataList {
+            
+            let storyboard = UIStoryboard(name: VCNames.tuneViewController, bundle: nil)
+            
+            if let vc = storyboard.instantiateViewController(withIdentifier: VCNames.tuneViewController) as? TuneViewController {
+                let tuneIDs = dataList[indexPath.row].song_ids
+                
+                vc.tuneIDQueries = tuneIDs
+                show(vc, sender: self)
+            }
+        }
+    }
     
 }

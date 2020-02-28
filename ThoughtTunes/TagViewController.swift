@@ -10,7 +10,7 @@
 
 import UIKit
 
-class TagViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TagViewController: UIViewController {
     
     //TODO: for local data, use LocalDataHandler(); for external url, use DataHandler()
     var dataHandler: LocalDataHandler? = LocalDataHandler()
@@ -19,26 +19,29 @@ class TagViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var refreshControl = UIRefreshControl()
-    var localNotifier = NSNotificationCenter.defaultCenter()
+    var localNotifier = NotificationCenter.default
     
     
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataHandler?.updateData(.Tag, ifCategoryThenTagType: nil, ifTuneThenQueryString: nil)
+        dataHandler?.updateData(modelType: .Tag, ifCategoryThenTagType: nil, ifTuneThenQueryString: nil)
         
         refreshControl.attributedTitle = NSAttributedString(string: CustomerFacingText.refreshControl)
-        refreshControl.addTarget(self, action: #selector(updateData), forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(updateData), for: .valueChanged)
         tagTableView.addSubview(refreshControl)
         activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()
     }
     
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        localNotifier.addObserver(self, selector: #selector(reloadTableView), name: Notifications.tagDataListSet, object: dataHandler)
+        localNotifier.addObserver(self,
+                                  selector: #selector(reloadTableView),
+                                  name: NSNotification.Name(rawValue: Notifications.tagDataListSet),
+                                  object: dataHandler)
     }
     
     
@@ -47,24 +50,25 @@ class TagViewController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     
-    
-    //MARK: TableView Handling
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+    @objc func updateData() {
+        dataHandler?.updateData(modelType: .Tag, ifCategoryThenTagType: nil, ifTuneThenQueryString: nil)
     }
     
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let dataList = dataHandler?.tagDataList {
-            return dataList.count
-        } else {
-            return 0
-        }
+    @objc func reloadTableView() {
+        activityIndicator.stopAnimating()
+        tagTableView.reloadData()
+        refreshControl.endRefreshing()
     }
     
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(VCCellNames.tagCell, forIndexPath: indexPath) as! TagCell
+    
+}
+
+//MARK: - TableView
+extension TagViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: VCCellNames.tagCell, for: indexPath) as! TagCell
         
         if let dataList = dataHandler?.tagDataList {
             cell.tagName.text = dataList[indexPath.row].title
@@ -73,13 +77,24 @@ class TagViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         return cell
     }
     
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let dataList = dataHandler?.tagDataList {
+            return dataList.count
+        } else {
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let dataList = dataHandler?.tagDataList {
             
             let storyboard = UIStoryboard(name: VCNames.categoryViewController, bundle: nil)
             
-            if let vc = storyboard.instantiateViewControllerWithIdentifier(VCNames.categoryViewController) as? CategoryViewController {
+            if let vc = storyboard.instantiateViewController(withIdentifier: VCNames.categoryViewController) as? CategoryViewController {
                 let tagTitle = dataList[indexPath.row].title
                 
                 if tagTitle == TagType.Artists.rawValue {
@@ -90,23 +105,8 @@ class TagViewController: UIViewController, UITableViewDelegate, UITableViewDataS
                     vc.tagChosen = TagType.Genre
                 }
                 
-                showViewController(vc, sender: self)
+                show(vc, sender: self)
             }
         }
     }
-    
-    
-    func updateData() {
-        dataHandler?.updateData(.Tag, ifCategoryThenTagType: nil, ifTuneThenQueryString: nil)
-    }
-    
-    
-    func reloadTableView() {
-        activityIndicator.stopAnimating()
-        tagTableView.reloadData()
-        refreshControl.endRefreshing()
-    }
-    
-    
-    
 }

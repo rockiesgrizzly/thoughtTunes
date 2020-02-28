@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TuneViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TuneViewController: UIViewController {
     
     //TODO: for local data, use LocalDataHandler(); for external url, use DataHandler()
     var dataHandler: LocalDataHandler? = LocalDataHandler()
@@ -18,7 +18,7 @@ class TuneViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var refreshControl = UIRefreshControl()
     var tuneIDQueries: String?
-    var localNotifier = NSNotificationCenter.defaultCenter()
+    var localNotifier = NotificationCenter.default
     
     
     //MARK: Lifecycle
@@ -27,20 +27,20 @@ class TuneViewController: UIViewController, UITableViewDelegate, UITableViewData
         updateDataFromTuneIDQueries()
         
        tuneTableView.estimatedRowHeight = 500
-        tuneTableView.rowHeight = UITableViewAutomaticDimension
+        tuneTableView.rowHeight = UITableView.automaticDimension
         tuneTableView.layoutIfNeeded()
         
         refreshControl.attributedTitle = NSAttributedString(string: CustomerFacingText.refreshControl)
-        refreshControl.addTarget(self, action: #selector(updateDataFromTuneIDQueries), forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(updateDataFromTuneIDQueries), for: .valueChanged)
         tuneTableView.addSubview(refreshControl)
         activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()
     }
     
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        localNotifier.addObserver(self, selector: #selector(reloadTableView), name: Notifications.tuneDataListSet, object: dataHandler)
+        localNotifier.addObserver(self, selector: #selector(reloadTableView), name: NSNotification.Name(rawValue: Notifications.tuneDataListSet), object: dataHandler)
     }
     
     
@@ -48,10 +48,24 @@ class TuneViewController: UIViewController, UITableViewDelegate, UITableViewData
         localNotifier.removeObserver(self)
     }
     
+    @objc func updateDataFromTuneIDQueries() {
+        if let tuneIDQueries = tuneIDQueries {
+            dataHandler?.updateData(modelType: .Tune, ifCategoryThenTagType: nil, ifTuneThenQueryString: tuneIDQueries)
+        }
+    }
     
     
+    @objc func reloadTableView() {
+        tuneTableView.reloadData()
+        refreshControl.endRefreshing()
+    }
+    
+}
+
+//MARK: - TableView
+extension TuneViewController: UITableViewDelegate, UITableViewDataSource {
     //MARK: TableView Handling
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let dataList = dataHandler?.tuneDataList {
             return dataList.count
         } else {
@@ -59,9 +73,8 @@ class TuneViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(VCCellNames.tuneCell, forIndexPath: indexPath) as! TuneCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: VCCellNames.tuneCell, for: indexPath as IndexPath) as! TuneCell
         
         if let dataList = dataHandler?.tuneDataList {
             
@@ -79,13 +92,10 @@ class TuneViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             
             if let coverUrlString = dataList[indexPath.row].cover_url {
-                let privateQueue = dispatch_queue_create("com.floydhillcode.queue", DISPATCH_QUEUE_CONCURRENT)
-                
-                dispatch_async(privateQueue) {
-                    if let url  = NSURL(string: coverUrlString),
-                        data = NSData(contentsOfURL: url)
-                    {
-                        dispatch_async(dispatch_get_main_queue()) {
+                DispatchQueue.global().async {
+                    if let url  = URL(string: coverUrlString),
+                        let data = try? Data(contentsOf: url) {
+                        DispatchQueue.main.async {
                             cell.tuneArtImage.image = UIImage(data: data)
                         }
                     }
@@ -96,25 +106,8 @@ class TuneViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
-    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-    
-    
-    func updateDataFromTuneIDQueries() {
-        if let tuneIDQueries = tuneIDQueries {
-            dataHandler?.updateData(.Tune, ifCategoryThenTagType: nil, ifTuneThenQueryString: tuneIDQueries)
-        }
-    }
-    
-    
-    func reloadTableView() {
-        tuneTableView.reloadData()
-        refreshControl.endRefreshing()
-    }
-    
-    
-    
     
 }
